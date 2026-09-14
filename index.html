@@ -10,12 +10,14 @@
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 50% -10%,#26375f 0,#0b1020 38%,#050812 100%);color:var(--text);min-height:100vh}
 button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.brand{font-weight:900;font-size:25px}.brand span{color:var(--gold)}.pill{border:1px solid var(--line);background:#11182bcc;border-radius:999px;padding:8px 12px;color:var(--muted)}
 .card{background:linear-gradient(145deg,#141d34e8,#0d1426e8);border:1px solid #ffffff10;border-radius:22px;box-shadow:var(--shadow);backdrop-filter:blur(14px)}.lobby{max-width:720px;margin:7vh auto;padding:28px}.hero{text-align:center}.crown{font-size:55px}.hero h1{font-size:clamp(32px,7vw,58px);margin:4px 0}.hero p{color:var(--muted)}.row{display:flex;gap:10px;flex-wrap:wrap}.field{flex:1;min-width:180px}.field input{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:#080d1b;color:#fff;outline:none}.btn{border:0;border-radius:14px;padding:13px 17px;font-weight:800;background:var(--gold);color:#17120a}.btn.secondary{background:#202c49;color:#fff}.btn.green{background:var(--green);color:#06130d}.btn:disabled{opacity:.45;cursor:not-allowed}.small{font-size:12px;color:var(--muted)}.avatar-grid{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}.avatar{font-size:28px;background:#0a1020;border:2px solid transparent;border-radius:14px;padding:8px}.avatar.active{border-color:var(--gold);background:#302816}.hidden{display:none!important}
-.game{display:grid;grid-template-columns:1fr 310px;gap:16px}.table{min-height:720px;padding:16px;position:relative;overflow:hidden;background:radial-gradient(circle,#17482f 0,#0c2b21 48%,#081b17 100%);border-color:#3c805d66}.players{display:grid;grid-template-columns:1fr 1fr;gap:9px}.seat{padding:10px 12px;border-radius:15px;background:#07140fcc;border:1px solid #ffffff10;display:flex;align-items:center;gap:8px}.seat .av{font-size:25px}.seat.me{outline:2px solid #f5c45166}.seat .info{flex:1}.seat b{font-size:13px}.seat small{display:block;color:#9eb19f}.turn{color:var(--gold)!important;font-weight:800}.board{min-height:370px;display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;padding:35px 10px}.domino{width:42px;height:78px;background:#f7f3e8;color:#111;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:space-around;box-shadow:0 5px 12px #0007;font-weight:900;position:relative}.domino:after{content:"";position:absolute;left:6px;right:6px;top:50%;border-top:2px solid #aaa}.pip{font-size:19px;line-height:1}.hand{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;padding:12px 0}.hand .domino{width:39px;height:73px;cursor:pointer;transition:.15s}.hand .domino:hover{transform:translateY(-9px)}.hand .domino.selected{transform:translateY(-12px);outline:3px solid var(--gold)}.controls{display:flex;justify-content:center;gap:8px;margin-top:5px}.sidebar{padding:14px;display:flex;flex-direction:column;gap:12px}.sidebox{padding:13px;border-radius:17px;background:#0b1222;border:1px solid var(--line)}.sidebox h3{margin:0 0 10px;font-size:14px}.chat{height:260px;overflow:auto;display:flex;flex-direction:column;gap:7px}.msg{background:#17213a;border-radius:12px;padding:7px 9px;font-size:12px}.msg b{color:var(--gold)}.chatbar{display:flex;gap:6px;margin-top:7px}.chatbar input{min-width:0;flex:1;background:#070c18;color:#fff;border:1px solid var(--line);border-radius:10px;padding:9px}.emotes{display:flex;gap:5px}.emotes button{background:#1b2742;border:0;border-radius:10px;padding:7px}.scoreline{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.leader{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #ffffff0d}.leader:last-child{border:0}.modal{position:fixed;inset:0;background:#02050bcc;display:flex;align-items:center;justify-content:center;padding:18px;z-index:20}.modal .card{max-width:520px;width:100%;padding:30px;text-align:center}.win{font-size:42px;font-weight:1000;background:linear-gradient(90deg,#fff,#f5c451,#fff);-webkit-background-clip:text;color:transparent}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#17213a;border:1px solid var(--line);padding:10px 15px;border-radius:999px;z-index:30}.confetti{position:fixed;inset:0;pointer-events:none;z-index:25}.piece{position:absolute;width:8px;height:16px;animation:fall 1.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}@media(max-width:850px){.game{grid-template-columns:1fr}.table{min-height:620px}.sidebar{order:2}.board{min-height:290px}.lobby{margin:4vh auto;padding:20px}.top{align-items:flex-start}.players{grid-template-columns:1fr 1fr}}
+.game{display:grid;grid-template-columns:1fr 310px;gap:16px}.table{min-height:720px;padding:16px;position:relative;overflow:hidden;background:radial-gradient(circle,#17482f 0,#0c2b21 48%,#081b17 100%);border-color:#3c805d66}.players{display:grid;grid-template-columns:1fr 1fr;gap:9px}.seat{padding:10px 12px;border-radius:15px;background:#07140fcc;border:1px solid #ffffff10;display:flex;align-items:center;gap:8px}.seat .av{font-size:25px}.seat.me{outline:2px solid #f5c45166}.seat .info{flex:1}.seat b{font-size:13px}.seat small{display:block;color:#9eb19f}.turn{color:var(--gold)!important;font-weight:800}
+.board{min-height:370px;display:flex;align-items:center;justify-content:center;padding:30px 14px;overflow:hidden}.domino-track{width:min(100%,700px);display:flex;flex-direction:column;gap:7px}.domino-row{display:flex;gap:5px;min-height:42px}.domino-row.ltr{justify-content:flex-start}.domino-row.rtl{justify-content:flex-start;flex-direction:row-reverse}.board .domino{width:78px;height:40px;flex-direction:row;border-radius:7px}.board .domino:after{left:50%;right:auto;top:5px;bottom:5px;border-top:0;border-left:2px solid #aaa}.board .domino-half{width:50%;height:100%}
+.domino{width:46px;height:82px;background:#f7f3e8;color:#111;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 5px 12px #0007;font-weight:900;position:relative;overflow:hidden}.domino:after{content:"";position:absolute;left:6px;right:6px;top:50%;border-top:2px solid #aaa}.domino-half{width:100%;height:50%;position:relative;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:4px}.dot{width:7px;height:7px;background:#111;border-radius:50%;align-self:center;justify-self:center}.dot.p1{grid-area:1/1}.dot.p2{grid-area:1/2}.dot.p3{grid-area:1/3}.dot.p4{grid-area:2/1}.dot.p5{grid-area:2/2}.dot.p6{grid-area:2/3}.dot.p7{grid-area:3/1}.dot.p8{grid-area:3/2}.dot.p9{grid-area:3/3}.hand{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:12px 0}.hand .domino{width:44px;height:80px;cursor:pointer;transition:.15s}.hand .domino:hover{transform:translateY(-9px)}.hand .domino.selected{transform:translateY(-12px);outline:3px solid var(--gold)}.controls{display:flex;justify-content:center;gap:8px;margin-top:5px}.sidebar{padding:14px;display:flex;flex-direction:column;gap:12px}.sidebox{padding:13px;border-radius:17px;background:#0b1222;border:1px solid var(--line)}.sidebox h3{margin:0 0 10px;font-size:14px}.chat{height:260px;overflow:auto;display:flex;flex-direction:column;gap:7px}.msg{background:#17213a;border-radius:12px;padding:7px 9px;font-size:12px}.msg b{color:var(--gold)}.chatbar{display:flex;gap:6px;margin-top:7px}.chatbar input{min-width:0;flex:1;background:#070c18;color:#fff;border:1px solid var(--line);border-radius:10px;padding:9px}.emotes{display:flex;gap:5px}.emotes button{background:#1b2742;border:0;border-radius:10px;padding:7px}.scoreline{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.leader{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #ffffff0d}.leader:last-child{border:0}.modal{position:fixed;inset:0;background:#02050bcc;display:flex;align-items:center;justify-content:center;padding:18px;z-index:20}.modal .card{max-width:520px;width:100%;padding:30px;text-align:center}.win{font-size:42px;font-weight:1000;background:linear-gradient(90deg,#fff,#f5c451,#fff);-webkit-background-clip:text;color:transparent}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#17213a;border:1px solid var(--line);padding:10px 15px;border-radius:999px;z-index:30}.confetti{position:fixed;inset:0;pointer-events:none;z-index:25}.piece{position:absolute;width:8px;height:16px;animation:fall 1.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}@media(max-width:850px){.game{grid-template-columns:1fr}.table{min-height:620px}.sidebar{order:2}.board{min-height:290px}.lobby{margin:4vh auto;padding:20px}.top{align-items:flex-start}.players{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 <div class="app">
-<header class="top"><div class="brand">🀄 <span>HAY</span> Gaple <small style="font-size:11px;color:#f5c451;border:1px solid #f5c45155;border-radius:999px;padding:3px 7px;vertical-align:middle">v2.3 FIRESTORE FIX</small></div><div id="roomPill" class="pill hidden"></div></header>
+<header class="top"><div class="brand">🀄 <span>HAY</span> Gaple <small style="font-size:11px;color:#f5c451;border:1px solid #f5c45155;border-radius:999px;padding:3px 7px;vertical-align:middle">v2.4 PIP + SNAKE</small></div><div id="roomPill" class="pill hidden"></div></header>
 
 <section id="lobby" class="card lobby">
   <div class="hero"><div class="crown">🀄</div><h1>HAY Gaple</h1><p>Gaple online 4 pemain. Satu room, empat HP, satu pemenang.</p></div>
@@ -58,7 +60,7 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
 <div id="confetti" class="confetti"></div>
 
 <script type="module">
-console.info("HAY Gaple v2.3 FIRESTORE FIX loaded");
+console.info("HAY Gaple v2.4 PIP + SNAKE loaded");
 const CONFIG = {
   apiKey: "AIzaSyAkOtTs5esLNHwRzFGDaoE1uG5fx6R266s",
   authDomain: "gaple-5f664.firebaseapp.com",
@@ -229,7 +231,7 @@ function render(){
   $('players').innerHTML=ps.map((p,i)=>`<div class="seat ${p.id===me?.id?'me':''}"><div class="av">${p.avatar}</div><div class="info"><b>${esc(p.name)}</b>${r.started&&r.turn===i?'<small class="turn">● Giliran</small>':'<small>'+((r.hand?.[p.id]||[]).length)+' gaple</small>'}</div></div>`).join('');
 
   if((r.board||[]).length){
-    $('board').innerHTML=r.board.map(c=>domino(c)).join('');
+    $('board').innerHTML=renderBoard(r.board);
   }else if(ps.length<4){
     $('board').innerHTML=`<div style="text-align:center;color:#a8b8ad">Menunggu pemain ${ps.length}/4…</div>`;
   }else if(!r.started){
@@ -240,7 +242,7 @@ function render(){
 
   const hand=r.hand?.[me?.id]||[];
   const canAct=!!(r.started&&!r.winner&&turnPlayer?.id===me?.id);
-  $('hand').innerHTML=hand.map((c,i)=>`<div class="domino ${selected===i?'selected':''}" onclick="selectCard(${i})">${pip(c.a)}<span></span>${pip(c.b)}</div>`).join('');
+  $('hand').innerHTML=hand.map((c,i)=>domino(c,`domino ${selected===i?'selected':''}`,`onclick="selectCard(${i})"`)).join('');
 
   if(r.winner){
     $('status').textContent='Permainan selesai.';
@@ -269,8 +271,30 @@ function render(){
   if(!r.winner)winnerShown=null;
 }
 
-function pip(n){return n===0?'':('●'.repeat(n))}
-function domino(c){return `<div class="domino">${pip(c.a)}<span></span>${pip(c.b)}</div>`}
+function pipFace(n){
+  const map={
+    0:[],
+    1:[5],
+    2:[1,9],
+    3:[1,5,9],
+    4:[1,3,7,9],
+    5:[1,3,5,7,9],
+    6:[1,3,4,6,7,9]
+  };
+  return `<div class="domino-half">${(map[n]||[]).map(p=>`<i class="dot p${p}"></i>`).join('')}</div>`;
+}
+function domino(c,cls='domino',attrs=''){
+  return `<div class="${cls}" ${attrs}>${pipFace(c.a)}${pipFace(c.b)}</div>`;
+}
+function renderBoard(cards){
+  const perRow=7, rows=[];
+  for(let i=0;i<cards.length;i+=perRow){
+    const row=cards.slice(i,i+perRow);
+    const rowIndex=Math.floor(i/perRow);
+    rows.push(`<div class="domino-row ${rowIndex%2===0?'ltr':'rtl'}">${row.map(c=>domino(c)).join('')}</div>`);
+  }
+  return `<div class="domino-track">${rows.join('')}</div>`;
+}
 window.selectCard=i=>{
   if(!localState||localState.winner||!localState.started)return;
   const t=currentTurnPlayer(localState);
@@ -281,26 +305,27 @@ window.selectCard=i=>{
 
 function placeOnBoard(card,board,left,right){
   const c={a:card.a,b:card.b};
-  // Prefer left when a tile can legally be placed on both ends.
-  if(c.a===left){
-    const oc={a:c.b,b:c.a};
-    board.unshift(oc);
-    return {board,left:c.b,right};
-  }
-  if(c.b===left){
-    const oc={a:c.a,b:c.b};
-    board.unshift(oc);
-    return {board,left:c.a,right};
-  }
+  // Prioritas visual: keping baru selalu dilempar ke arah kanan.
+  // Jika hanya cocok di ujung kiri, rantai dibalik secara ekuivalen lalu keping ditambah di kanan.
   if(c.a===right){
-    const oc={a:c.a,b:c.b};
-    board.push(oc);
+    board.push({a:c.a,b:c.b});
     return {board,left,right:c.b};
   }
   if(c.b===right){
-    const oc={a:c.b,b:c.a};
-    board.push(oc);
+    board.push({a:c.b,b:c.a});
     return {board,left,right:c.a};
+  }
+  if(c.a===left || c.b===left){
+    board=board.slice().reverse().map(x=>({a:x.b,b:x.a}));
+    const newLeft=right, newRight=left;
+    if(c.a===newRight){
+      board.push({a:c.a,b:c.b});
+      return {board,left:newLeft,right:c.b};
+    }
+    if(c.b===newRight){
+      board.push({a:c.b,b:c.a});
+      return {board,left:newLeft,right:c.a};
+    }
   }
   return null;
 }
