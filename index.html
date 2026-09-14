@@ -11,13 +11,13 @@
 button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.brand{font-weight:900;font-size:25px}.brand span{color:var(--gold)}.pill{border:1px solid var(--line);background:#11182bcc;border-radius:999px;padding:8px 12px;color:var(--muted)}
 .card{background:linear-gradient(145deg,#141d34e8,#0d1426e8);border:1px solid #ffffff10;border-radius:22px;box-shadow:var(--shadow);backdrop-filter:blur(14px)}.lobby{max-width:720px;margin:7vh auto;padding:28px}.hero{text-align:center}.crown{font-size:55px}.hero h1{font-size:clamp(32px,7vw,58px);margin:4px 0}.hero p{color:var(--muted)}.row{display:flex;gap:10px;flex-wrap:wrap}.field{flex:1;min-width:180px}.field input{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:#080d1b;color:#fff;outline:none}.btn{border:0;border-radius:14px;padding:13px 17px;font-weight:800;background:var(--gold);color:#17120a}.btn.secondary{background:#202c49;color:#fff}.btn.green{background:var(--green);color:#06130d}.btn:disabled{opacity:.45;cursor:not-allowed}.small{font-size:12px;color:var(--muted)}.avatar-grid{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}.avatar{font-size:28px;background:#0a1020;border:2px solid transparent;border-radius:14px;padding:8px}.avatar.active{border-color:var(--gold);background:#302816}.hidden{display:none!important}
 .game{display:grid;grid-template-columns:1fr 310px;gap:16px}.table{min-height:720px;padding:16px;position:relative;overflow:hidden;background:radial-gradient(circle,#17482f 0,#0c2b21 48%,#081b17 100%);border-color:#3c805d66}.players{display:grid;grid-template-columns:1fr 1fr;gap:9px}.seat{padding:10px 12px;border-radius:15px;background:#07140fcc;border:1px solid #ffffff10;display:flex;align-items:center;gap:8px}.seat .av{font-size:25px}.seat.me{outline:2px solid #f5c45166}.seat .info{flex:1}.seat b{font-size:13px}.seat small{display:block;color:#9eb19f}.turn{color:var(--gold)!important;font-weight:800}
-.board{min-height:370px;display:flex;align-items:center;justify-content:center;padding:30px 14px;overflow:hidden}.domino-track{width:min(100%,700px);display:flex;flex-direction:column;gap:7px}.domino-row{display:flex;gap:5px;min-height:42px}.domino-row.ltr{justify-content:flex-start}.domino-row.rtl{justify-content:flex-start;flex-direction:row-reverse}.board .domino{width:78px;height:40px;flex-direction:row;border-radius:7px}.board .domino:after{left:50%;right:auto;top:5px;bottom:5px;border-top:0;border-left:2px solid #aaa}.board .domino-half{width:50%;height:100%}
+.board{min-height:430px;display:flex;align-items:center;justify-content:center;padding:24px 10px;overflow:hidden}.domino-track.square-loop{position:relative;width:min(100%,560px);aspect-ratio:1/1;margin:auto;filter:drop-shadow(0 10px 25px rgba(0,0,0,.18))}.board .board-piece{position:absolute;background:rgba(247,243,232,.96);backdrop-filter:blur(3px)}.board .board-piece.horiz{flex-direction:row;border-radius:7px}.board .board-piece.horiz:after{left:50%;right:auto;top:5px;bottom:5px;border-top:0;border-left:2px solid #aaa}.board .board-piece.horiz .domino-half{width:50%;height:100%}.board .board-piece.vert{flex-direction:column;border-radius:7px}.board .board-piece.vert:after{left:6px;right:6px;top:50%;bottom:auto;border-top:2px solid #aaa;border-left:0}.board .board-piece.vert .domino-half{width:100%;height:50%}.board .board-piece.corner-tr{transform:translate(8px,6px) rotate(10deg);transform-origin:right top;z-index:4}.board .board-piece.corner-br{transform:translate(-6px,8px) rotate(-10deg);transform-origin:right bottom;z-index:4}.board .board-piece.corner-bl{transform:translate(-8px,-6px) rotate(10deg);transform-origin:left bottom;z-index:4}.board .board-piece.corner-tl{transform:translate(6px,-8px) rotate(-10deg);transform-origin:left top;z-index:4}.board .board-piece.fresh-right{animation:throwRight .48s cubic-bezier(.2,.8,.2,1)}.board .board-piece.fresh-down{animation:throwDown .48s cubic-bezier(.2,.8,.2,1)}.board .board-piece.fresh-left{animation:throwLeft .48s cubic-bezier(.2,.8,.2,1)}.board .board-piece.fresh-up{animation:throwUp .48s cubic-bezier(.2,.8,.2,1)}@keyframes throwRight{0%{opacity:0;transform:translate(-30px,0) scale(.82) rotate(-10deg)}60%{opacity:1;transform:translate(6px,0) scale(1.03) rotate(2deg)}100%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}}@keyframes throwDown{0%{opacity:0;transform:translate(0,-30px) scale(.82) rotate(-10deg)}60%{opacity:1;transform:translate(0,6px) scale(1.03) rotate(2deg)}100%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}}@keyframes throwLeft{0%{opacity:0;transform:translate(30px,0) scale(.82) rotate(10deg)}60%{opacity:1;transform:translate(-6px,0) scale(1.03) rotate(-2deg)}100%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}}@keyframes throwUp{0%{opacity:0;transform:translate(0,30px) scale(.82) rotate(10deg)}60%{opacity:1;transform:translate(0,-6px) scale(1.03) rotate(-2deg)}100%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}}
 .domino{width:46px;height:82px;background:#f7f3e8;color:#111;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 5px 12px #0007;font-weight:900;position:relative;overflow:hidden}.domino:after{content:"";position:absolute;left:6px;right:6px;top:50%;border-top:2px solid #aaa}.domino-half{width:100%;height:50%;position:relative;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:4px}.dot{width:7px;height:7px;background:#111;border-radius:50%;align-self:center;justify-self:center}.dot.p1{grid-area:1/1}.dot.p2{grid-area:1/2}.dot.p3{grid-area:1/3}.dot.p4{grid-area:2/1}.dot.p5{grid-area:2/2}.dot.p6{grid-area:2/3}.dot.p7{grid-area:3/1}.dot.p8{grid-area:3/2}.dot.p9{grid-area:3/3}.hand{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:12px 0}.hand .domino{width:44px;height:80px;cursor:pointer;transition:.15s}.hand .domino:hover{transform:translateY(-9px)}.hand .domino.selected{transform:translateY(-12px);outline:3px solid var(--gold)}.controls{display:flex;justify-content:center;gap:8px;margin-top:5px}.sidebar{padding:14px;display:flex;flex-direction:column;gap:12px}.sidebox{padding:13px;border-radius:17px;background:#0b1222;border:1px solid var(--line)}.sidebox h3{margin:0 0 10px;font-size:14px}.chat{height:260px;overflow:auto;display:flex;flex-direction:column;gap:7px}.msg{background:#17213a;border-radius:12px;padding:7px 9px;font-size:12px}.msg b{color:var(--gold)}.chatbar{display:flex;gap:6px;margin-top:7px}.chatbar input{min-width:0;flex:1;background:#070c18;color:#fff;border:1px solid var(--line);border-radius:10px;padding:9px}.emotes{display:flex;gap:5px}.emotes button{background:#1b2742;border:0;border-radius:10px;padding:7px}.scoreline{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.leader{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #ffffff0d}.leader:last-child{border:0}.modal{position:fixed;inset:0;background:#02050bcc;display:flex;align-items:center;justify-content:center;padding:18px;z-index:20}.modal .card{max-width:520px;width:100%;padding:30px;text-align:center}.win{font-size:42px;font-weight:1000;background:linear-gradient(90deg,#fff,#f5c451,#fff);-webkit-background-clip:text;color:transparent}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#17213a;border:1px solid var(--line);padding:10px 15px;border-radius:999px;z-index:30}.confetti{position:fixed;inset:0;pointer-events:none;z-index:25}.piece{position:absolute;width:8px;height:16px;animation:fall 1.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}@media(max-width:850px){.game{grid-template-columns:1fr}.table{min-height:620px}.sidebar{order:2}.board{min-height:290px}.lobby{margin:4vh auto;padding:20px}.top{align-items:flex-start}.players{grid-template-columns:1fr 1fr}}
-</style>
+.seat.active-turn{box-shadow:0 0 0 1px #f5c45155,inset 0 0 18px #f5c45115}.turn-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:6px;box-shadow:0 0 12px #f5c451;animation:pulseTurn 1s ease-in-out infinite}@keyframes pulseTurn{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.28);opacity:.7}}.board .board-piece.end-left{box-shadow:0 0 0 2px rgba(112,167,255,.45),0 0 16px rgba(112,167,255,.28)}.board .board-piece.end-right{box-shadow:0 0 0 2px rgba(245,196,81,.5),0 0 18px rgba(245,196,81,.3)}.board .board-piece.end-left:before,.board .board-piece.end-right:before{content:attr(data-end);position:absolute;top:-10px;right:-6px;min-width:18px;height:18px;border-radius:999px;background:#0b1222;color:#fff;font-size:11px;display:grid;place-items:center;border:1px solid #ffffff22;box-shadow:0 4px 12px #0007}.hand .domino{transition:transform .15s,opacity .15s,box-shadow .15s,outline-color .15s}.hand .domino.playable{box-shadow:0 0 0 2px rgba(57,217,138,.35),0 7px 18px rgba(0,0,0,.45)}.hand .domino.playable:before{content:"";position:absolute;inset:0;border-radius:8px;box-shadow:inset 0 0 0 2px rgba(57,217,138,.45);pointer-events:none}.hand .domino.unplayable{opacity:.42;filter:saturate(.82)}.domino.fly{position:fixed;z-index:60;pointer-events:none;margin:0;transition:left .34s cubic-bezier(.2,.8,.2,1),top .34s cubic-bezier(.2,.8,.2,1),width .34s cubic-bezier(.2,.8,.2,1),height .34s cubic-bezier(.2,.8,.2,1),transform .34s cubic-bezier(.2,.8,.2,1),opacity .34s ease;width:44px;height:80px}.status-strong{color:#fff;font-weight:700}.meta-row{display:flex;gap:8px;flex-wrap:wrap}.mini-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;background:#121d33;border:1px solid var(--line);font-size:12px;color:#dce6ff}.mini-pill b{font-size:12px}.mini-pill .signal{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(57,217,138,.45)}.mini-pill.off .signal{background:var(--red);box-shadow:0 0 12px rgba(255,100,124,.45)}.mini-pill.wait .signal{background:var(--gold);box-shadow:0 0 12px rgba(245,196,81,.45)}.icon-btn{border:1px solid var(--line);background:#121d33;color:#fff;border-radius:999px;padding:8px 12px;font-weight:700;cursor:pointer}</style>
 </head>
 <body>
 <div class="app">
-<header class="top"><div class="brand">🀄 <span>HAY</span> Gaple <small style="font-size:11px;color:#f5c451;border:1px solid #f5c45155;border-radius:999px;padding:3px 7px;vertical-align:middle">v2.4 PIP + SNAKE</small></div><div id="roomPill" class="pill hidden"></div></header>
+<header class="top"><div class="brand">🀄 <span>HAY</span> Gaple <small style="font-size:11px;color:#f5c451;border:1px solid #f5c45155;border-radius:999px;padding:3px 7px;vertical-align:middle">v2.8 POLISH LITE</small></div><div id="roomPill" class="pill hidden"></div></header>
 
 <section id="lobby" class="card lobby">
   <div class="hero"><div class="crown">🀄</div><h1>HAY Gaple</h1><p>Gaple online 4 pemain. Satu room, empat HP, satu pemenang.</p></div>
@@ -48,6 +48,7 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
     <div class="emotes"><button onclick="sendEmoji('😂')">😂</button><button onclick="sendEmoji('😎')">😎</button><button onclick="sendEmoji('🔥')">🔥</button><button onclick="sendEmoji('❤️')">❤️</button></div>
     <div class="chatbar"><input id="chatInput" maxlength="100" placeholder="Tulis pesan..."><button id="send" class="btn">Kirim</button></div>
    </div>
+   <div class="sidebox"><h3>🎛 Status Game</h3><div class="meta-row"><div id="connPill" class="mini-pill wait"><span class="signal"></span><b>Menyambungkan...</b></div><button id="soundToggle" class="icon-btn">🔊 Suara ON</button></div><div id="hintBox" class="small" style="margin-top:10px">Tip: kartu yang bisa dimainkan akan menyala hijau saat giliran kamu.</div></div>
    <div class="sidebox"><h3>🏆 Leaderboard</h3><div id="leaderboard"></div></div>
    <div class="sidebox"><h3>📌 Aturan</h3><div class="small">• 28 keping gaple<br>• Balak 0-0 wajib membuka permainan<br>• Setelah itu keping gaple harus nyambung<br>• Tidak bisa main = Pass<br>• 4 pemain = kartu langsung dibagikan otomatis</div></div>
    <button id="leave" class="btn secondary">Keluar Room</button>
@@ -60,7 +61,7 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
 <div id="confetti" class="confetti"></div>
 
 <script type="module">
-console.info("HAY Gaple v2.4 PIP + SNAKE loaded");
+console.info("HAY Gaple v2.8 POLISH LITE loaded");
 const CONFIG = {
   apiKey: "AIzaSyAkOtTs5esLNHwRzFGDaoE1uG5fx6R266s",
   authDomain: "gaple-5f664.firebaseapp.com",
@@ -81,7 +82,8 @@ const app=initializeApp(CONFIG), db=getFirestore(app);
 const $=id=>document.getElementById(id);
 const AV=['😎','🦁','🐯','🐼','🐸','🐵','🦊','🐨','🐲','👽','🤠','🥷'];
 let avatar=AV[0], roomId=null, me=null, unsubRoom=null, unsubChat=null, selected=null, localState=null;
-let starting=false, winnerShown=null;
+let starting=false, winnerShown=null, boardAnimIndex=null, boardAnimDir=null, boardAnimTimer=null, audioCtx=null;
+let pendingAction=false, soundOn=localStorage.getItem('hayGapleSound')!=='off';
 
 AV.forEach((a,i)=>{
   const b=document.createElement('button');
@@ -102,6 +104,10 @@ function playerId(){
   if(!v){v=crypto.randomUUID();sessionStorage.setItem('hayGaplePlayerId',v)}
   return v;
 }
+function setPending(v){pendingAction=!!v;render()}
+function updateConnectionState(state='ok',label='Realtime aktif'){const el=$('connPill');if(!el)return;el.className='mini-pill'+(state==='off'?' off':state==='wait'?' wait':'');el.innerHTML='<span class="signal"></span><b>'+label+'</b>'}
+function renderSoundButton(){const b=$('soundToggle');if(b)b.textContent=(soundOn?'🔊 Suara ON':'🔇 Suara OFF')}
+function toggleSound(){soundOn=!soundOn;localStorage.setItem('hayGapleSound',soundOn?'on':'off');renderSoundButton();toast(soundOn?'Suara diaktifkan':'Suara dimatikan')}
 function deck(){let d=[];for(let a=0;a<=6;a++)for(let b=a;b<=6;b++)d.push({a,b});return d}
 function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function points(c){return c.a+c.b}
@@ -200,13 +206,19 @@ async function joinAfter(){
   if(unsubRoom)unsubRoom();
   if(unsubChat)unsubChat();
 
+  updateConnectionState('wait','Menyambungkan...');
   unsubRoom=onSnapshot(doc(db,'rooms',roomId),s=>{
     if(!s.exists())return;
+    updateConnectionState(navigator.onLine?'ok':'wait',navigator.onLine?'Realtime aktif':'Internet terputus');
+    const prevLen=(localState?.board||[]).length;
     localState=s.data();
+    const nextLen=(localState?.board||[]).length;
+    if(nextLen>prevLen)triggerBoardAnim(nextLen-1,directionForIndex(nextLen-1));
+    if(nextLen===0&&boardAnimTimer){clearTimeout(boardAnimTimer);boardAnimTimer=null;boardAnimIndex=null;boardAnimDir=null;}
     render();
     const count=Object.keys(localState.players||{}).length;
     if(count===4&&!localState.started&&!localState.winner)tryStartGame();
-  },e=>{toast(humanError(e));console.error(e)});
+  },e=>{updateConnectionState('off','Sinkronisasi gagal');toast(humanError(e));console.error(e)});
 
   unsubChat=onSnapshot(
     query(collection(db,'rooms',roomId,'chat'),orderBy('createdAt','asc')),
@@ -222,16 +234,90 @@ async function joinAfter(){
 
 function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 function currentTurnPlayer(r){const ps=playersOf(r);return ps[r.turn]||null}
+function directionForIndex(i){return i<7?'right':i<14?'down':i<21?'left':'up'}
+function ensureAudio(){
+  const Ctx=window.AudioContext||window.webkitAudioContext;
+  if(!Ctx)return null;
+  if(!audioCtx)audioCtx=new Ctx();
+  return audioCtx;
+}
+async function unlockAudio(){
+  const ctx=ensureAudio();
+  if(!ctx)return;
+  if(ctx.state==='suspended'){
+    try{await ctx.resume()}catch(e){}
+  }
+}
+function playDominoSound(dir='right'){
+  if(!soundOn)return;
+  const ctx=ensureAudio();
+  if(!ctx||ctx.state!=='running')return;
+  const now=ctx.currentTime;
+  const base={right:820,down:700,left:620,up:760}[dir]||720;
+  const master=ctx.createGain();
+  master.gain.setValueAtTime(0.0001,now);
+  master.gain.exponentialRampToValueAtTime(0.12,now+0.006);
+  master.gain.exponentialRampToValueAtTime(0.0001,now+0.16);
+  let out=master;
+  if(ctx.createStereoPanner){ const pan=ctx.createStereoPanner(); pan.pan.value={right:0.45,down:0,left:-0.45,up:0}[dir]||0; master.connect(pan); out=pan; }
+  const body=ctx.createOscillator(); body.type='triangle'; body.frequency.setValueAtTime(base,now); body.frequency.exponentialRampToValueAtTime(160,now+0.12);
+  const click=ctx.createOscillator(); click.type='square'; click.frequency.setValueAtTime(base*1.9,now); click.frequency.exponentialRampToValueAtTime(300,now+0.045);
+  const clickGain=ctx.createGain(); clickGain.gain.value=.28;
+  const noiseBuf=ctx.createBuffer(1, Math.floor(ctx.sampleRate*0.03), ctx.sampleRate);
+  const data=noiseBuf.getChannelData(0); for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*(1-i/data.length);
+  const noise=ctx.createBufferSource(); noise.buffer=noiseBuf;
+  const noiseFilter=ctx.createBiquadFilter(); noiseFilter.type='highpass'; noiseFilter.frequency.value=900;
+  const noiseGain=ctx.createGain(); noiseGain.gain.setValueAtTime(0.12,now); noiseGain.gain.exponentialRampToValueAtTime(0.0001,now+0.035);
+  body.connect(master); click.connect(clickGain); clickGain.connect(master); noise.connect(noiseFilter); noiseFilter.connect(noiseGain); noiseGain.connect(master); out.connect(ctx.destination);
+  body.start(now); click.start(now); noise.start(now); body.stop(now+0.14); click.stop(now+0.05); noise.stop(now+0.035);
+}
+function triggerBoardAnim(index,dir=directionForIndex(index)){
+  boardAnimIndex=index;
+  boardAnimDir=dir;
+  playDominoSound(dir);
+  if(boardAnimTimer)clearTimeout(boardAnimTimer);
+  boardAnimTimer=setTimeout(()=>{
+    boardAnimIndex=null;
+    boardAnimDir=null;
+    boardAnimTimer=null;
+    if(localState)render();
+  },700);
+}
 
+function moveTargetMetrics(i){
+  const SIZE=560, STEP=70, H_W=64, H_H=34, V_W=34, V_H=64;
+  let x=0,y=0,w=H_W,h=H_H,dir='right';
+  if(i<7){x=i*STEP;y=0;dir='right'}
+  else if(i<14){x=7*STEP;y=(i-7)*STEP;w=V_W;h=V_H;dir='down'}
+  else if(i<21){x=(21-i)*STEP;y=7*STEP;dir='left'}
+  else{x=0;y=(28-i)*STEP;w=V_W;h=V_H;dir='up'}
+  return {x,y,w,h,dir,SIZE};
+}
+function animatePlayFromHand(card,index){
+  try{
+    const from=document.querySelector('#hand .domino.selected')||document.querySelectorAll('#hand .domino')[selected];
+    const boardEl=$('board'); if(!from||!boardEl)return;
+    const fromRect=from.getBoundingClientRect(); const box=boardEl.getBoundingClientRect();
+    const size=Math.min(boardEl.clientWidth,560); const trackLeft=box.left+(boardEl.clientWidth-size)/2; const trackTop=box.top+(boardEl.clientHeight-size)/2;
+    const m=moveTargetMetrics(index), scale=size/m.SIZE;
+    const ghost=document.createElement('div'); ghost.className='domino fly '+(m.w>m.h?'horiz':'vert');
+    ghost.innerHTML=pipFace(card.a)+pipFace(card.b);
+    ghost.style.left=fromRect.left+'px'; ghost.style.top=fromRect.top+'px'; ghost.style.width=fromRect.width+'px'; ghost.style.height=fromRect.height+'px';
+    document.body.appendChild(ghost);
+    requestAnimationFrame(()=>{ghost.style.left=(trackLeft+m.x*scale)+'px';ghost.style.top=(trackTop+m.y*scale)+'px';ghost.style.width=(m.w*scale)+'px';ghost.style.height=(m.h*scale)+'px';ghost.style.transform='rotate('+(m.dir==='right'?0:m.dir==='down'?90:m.dir==='left'?180:-90)+'deg)';ghost.style.opacity='0.92'});
+    setTimeout(()=>ghost.remove(),380);
+  }catch(e){}
+}
+function domSeat(p,i,isTurn,count){return '<div class="seat '+(p.id===me?.id?'me ':'')+(isTurn?'active-turn':'')+'"><div class="av">'+p.avatar+'</div><div class="info"><b>'+esc(p.name)+'</b>'+(isTurn?'<small class="turn"><span class="turn-dot"></span>'+(p.id===me?.id?'Giliran kamu':'Giliran')+'</small>':'<small>'+count+' gaple</small>')+'</div></div>'}
 function render(){
   const r=localState||makeRoom();
   const ps=playersOf(r);
   const turnPlayer=currentTurnPlayer(r);
 
-  $('players').innerHTML=ps.map((p,i)=>`<div class="seat ${p.id===me?.id?'me':''}"><div class="av">${p.avatar}</div><div class="info"><b>${esc(p.name)}</b>${r.started&&r.turn===i?'<small class="turn">● Giliran</small>':'<small>'+((r.hand?.[p.id]||[]).length)+' gaple</small>'}</div></div>`).join('');
+  $('players').innerHTML=ps.map((p,i)=>domSeat(p,i,r.turn===i&&r.started,(r.hand?.[p.id]||[]).length)).join('');
 
   if((r.board||[]).length){
-    $('board').innerHTML=renderBoard(r.board);
+    $('board').innerHTML=renderBoard(r.board, boardAnimIndex, r.left, r.right);
   }else if(ps.length<4){
     $('board').innerHTML=`<div style="text-align:center;color:#a8b8ad">Menunggu pemain ${ps.length}/4…</div>`;
   }else if(!r.started){
@@ -241,21 +327,30 @@ function render(){
   }
 
   const hand=r.hand?.[me?.id]||[];
-  const canAct=!!(r.started&&!r.winner&&turnPlayer?.id===me?.id);
-  $('hand').innerHTML=hand.map((c,i)=>domino(c,`domino ${selected===i?'selected':''}`,`onclick="selectCard(${i})"`)).join('');
+  const canAct=!!(r.started&&!r.winner&&turnPlayer?.id===me?.id&&!pendingAction);
+  const boardEmpty=!(r.board||[]).length;
+  $('hand').innerHTML=hand.map((c,i)=>{
+    const playable=canAct&&(boardEmpty?(c.a===0&&c.b===0):canPlay(c,r.left,r.right));
+    const dim=canAct&&!playable;
+    return domino(c,'domino '+(selected===i?'selected ':'')+(playable?'playable ':'')+(dim?'unplayable ':''),`onclick="selectCard(${i})"`);
+  }).join('');
 
   if(r.winner){
-    $('status').textContent='Permainan selesai.';
+    $('status').innerHTML='<span class="status-strong">Permainan selesai.</span>';
   }else if(ps.length<4){
-    $('status').textContent=`Menunggu pemain ${ps.length}/4`;
+    $('status').innerHTML='Menunggu pemain <span class="status-strong">'+ps.length+'/4</span>';
   }else if(!r.started){
-    $('status').textContent='Menyiapkan keping gaple…';
+    $('status').innerHTML='Menyiapkan <span class="status-strong">keping gaple</span>…';
+  }else if(canAct){
+    $('status').innerHTML='<span class="status-strong">Giliran kamu</span> — pilih gaple lalu klik Mainkan';
   }else{
-    $('status').textContent='Giliran: '+(turnPlayer?.name||'…');
+    $('status').innerHTML='Giliran: <span class="status-strong">'+(turnPlayer?.name||'…')+'</span>';
   }
 
-  $('play').disabled=!canAct;
+  $('play').disabled=!canAct||selected===null;
   $('pass').disabled=!canAct;
+  const hinted=canAct?hand.some(c=>boardEmpty?(c.a===0&&c.b===0):canPlay(c,r.left,r.right)):false;
+  if($('hintBox'))$('hintBox').textContent=pendingAction?'Mengirim langkah ke room…':canAct?(hinted?'Tip: kartu yang bisa dimainkan menyala hijau. Ujung biru & emas menunjukkan sambungan aktif.':'Tidak ada kartu yang cocok. Kamu boleh tekan Pass.'):'Tip: tunggu giliran kamu untuk membuang gaple.';
 
   const lb=Object.entries(r.scores||{}).sort((a,b)=>b[1]-a[1]);
   $('leaderboard').innerHTML=lb.length?lb.map((x,i)=>`<div class="leader"><span>#${i+1} ${esc(r.players?.[x[0]]?.name||'')}</span><b>${x[1]||0}</b></div>`).join(''):'<div class="small">Skor muncul setelah ronde.</div>';
@@ -286,21 +381,31 @@ function pipFace(n){
 function domino(c,cls='domino',attrs=''){
   return `<div class="${cls}" ${attrs}>${pipFace(c.a)}${pipFace(c.b)}</div>`;
 }
-function renderBoard(cards){
-  const perRow=7, rows=[];
-  for(let i=0;i<cards.length;i+=perRow){
-    const row=cards.slice(i,i+perRow);
-    const rowIndex=Math.floor(i/perRow);
-    rows.push(`<div class="domino-row ${rowIndex%2===0?'ltr':'rtl'}">${row.map(c=>domino(c)).join('')}</div>`);
-  }
-  return `<div class="domino-track">${rows.join('')}</div>`;
+function renderBoard(cards,animIndex=null,leftVal=null,rightVal=null){
+  const items=cards.slice(0,28).map((c,i)=>{
+    const m=moveTargetMetrics(i);
+    let cls=(m.w>m.h?'horiz':'vert');
+    if(i===6)cls+=' corner-tr'; else if(i===13)cls+=' corner-br'; else if(i===20)cls+=' corner-bl'; else if(i===27)cls+=' corner-tl';
+    if(i===0)cls+=' end-left';
+    if(i===cards.length-1)cls+=' end-right';
+    if(i===animIndex)cls+=' fresh-'+(boardAnimDir||directionForIndex(i));
+    const left=((m.x/m.SIZE)*100).toFixed(4), top=((m.y/m.SIZE)*100).toFixed(4), width=((m.w/m.SIZE)*100).toFixed(4), height=((m.h/m.SIZE)*100).toFixed(4);
+    let attrs='style="left:'+left+'%;top:'+top+'%;width:'+width+'%;height:'+height+'%;"';
+    if(i===0)attrs+=' data-end="'+(leftVal??'')+'"';
+    if(i===cards.length-1)attrs+=' data-end="'+(rightVal??'')+'"';
+    return domino(c,'domino board-piece '+cls,attrs);
+  }).join('');
+  return '<div class="domino-track square-loop">'+items+'</div>';
 }
+
 window.selectCard=i=>{
-  if(!localState||localState.winner||!localState.started)return;
+  if(!localState||localState.winner||!localState.started||pendingAction)return;
   const t=currentTurnPlayer(localState);
   if(t?.id!==me?.id)return toast('Belum giliran kamu');
-  selected=i;
-  render();
+  const hand=localState.hand?.[me?.id]||[]; const c=hand[i]; if(!c)return;
+  const playable=!(localState.board||[]).length?(c.a===0&&c.b===0):canPlay(c,localState.left,localState.right);
+  if(!playable)return toast('Pilih gaple yang nyambung');
+  selected=i; render();
 };
 
 function placeOnBoard(card,board,left,right){
@@ -332,8 +437,17 @@ function placeOnBoard(card,board,left,right){
 
 async function play(){
   if(selected===null)return toast('Pilih keping gaple dulu');
+  if(pendingAction)return;
   const ref=doc(db,'rooms',roomId);
   const selectedIndex=selected;
+  const current=localState;
+  const myHand=current?.hand?.[me?.id]||[];
+  const picked=myHand[selectedIndex];
+  if(!picked)return toast('Gaple berubah. Pilih ulang.');
+  const validNow=!(current?.board||[]).length?(picked.a===0&&picked.b===0):canPlay(picked,current.left,current.right);
+  if(!validNow)return toast('Gaple tidak nyambung');
+  setPending(true);
+  animatePlayFromHand(picked,(current?.board||[]).length);
   try{
     await runTransaction(db,async tx=>{
       const s=await tx.get(ref);
@@ -375,10 +489,13 @@ async function play(){
     });
     selected=null;
   }catch(e){toast(humanError(e));console.error(e)}
+  finally{setPending(false)}
 }
 
 async function pass(){
+  if(pendingAction)return;
   const ref=doc(db,'rooms',roomId);
+  setPending(true);
   try{
     await runTransaction(db,async tx=>{
       const s=await tx.get(ref);
@@ -409,6 +526,7 @@ async function pass(){
       tx.update(ref,patch);
     });
   }catch(e){toast(humanError(e));console.error(e)}
+  finally{setPending(false)}
 }
 
 async function restartRound(){
@@ -425,6 +543,10 @@ async function restartRound(){
     });
     selected=null;
     winnerShown=null;
+    pendingAction=false;
+    boardAnimIndex=null;
+    boardAnimDir=null;
+    if(boardAnimTimer){clearTimeout(boardAnimTimer);boardAnimTimer=null;}
     $('modal').classList.add('hidden');
   }catch(e){toast(humanError(e));console.error(e)}
 }
@@ -455,15 +577,22 @@ async function leaveRoom(){
     }catch(e){console.error('Leave update:',e)}
   }
   if(unsubRoom)unsubRoom();if(unsubChat)unsubChat();
-  unsubRoom=null;unsubChat=null;roomId=null;localState=null;selected=null;winnerShown=null;
+  unsubRoom=null;unsubChat=null;roomId=null;localState=null;selected=null;winnerShown=null;pendingAction=false;boardAnimIndex=null;boardAnimDir=null;if(boardAnimTimer){clearTimeout(boardAnimTimer);boardAnimTimer=null;}
+  updateConnectionState(navigator.onLine?'ok':'off',navigator.onLine?'Realtime siap':'Internet terputus');
   $('game').classList.add('hidden');$('lobby').classList.remove('hidden');$('roomPill').classList.add('hidden');$('modal').classList.add('hidden');
 }
 
-$('create').onclick=create;
-$('join').onclick=join;
-$('play').onclick=play;
-$('pass').onclick=pass;
-$('send').onclick=()=>{send($('chatInput').value);$('chatInput').value=''};
+document.addEventListener('pointerdown',unlockAudio,{once:true});
+window.addEventListener('online',()=>updateConnectionState('ok','Internet aktif'));
+window.addEventListener('offline',()=>updateConnectionState('off','Internet terputus'));
+renderSoundButton();
+updateConnectionState(navigator.onLine?'ok':'off',navigator.onLine?'Realtime siap':'Internet terputus');
+$('soundToggle').onclick=async()=>{await unlockAudio();toggleSound()};
+$('create').onclick=async()=>{await unlockAudio();create()};
+$('join').onclick=async()=>{await unlockAudio();join()};
+$('play').onclick=async()=>{await unlockAudio();play()};
+$('pass').onclick=async()=>{await unlockAudio();pass()};
+$('send').onclick=async()=>{await unlockAudio();send($('chatInput').value);$('chatInput').value=''};
 $('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('send').click()});
 $('leave').onclick=leaveRoom;
 $('closeModal').onclick=restartRound;
