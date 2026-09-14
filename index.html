@@ -17,7 +17,7 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
 </head>
 <body>
 <div class="app">
-<header class="top"><div class="brand">🀄 <span>HAY</span> Gaple <small style="font-size:11px;color:#f5c451;border:1px solid #f5c45155;border-radius:999px;padding:3px 7px;vertical-align:middle">v2.9 SIDE SELECT</small></div><div id="roomPill" class="pill hidden"></div></header>
+<header class="top"><div class="brand">🀄 <span>HAY</span> Gaple <small style="font-size:11px;color:#f5c451;border:1px solid #f5c45155;border-radius:999px;padding:3px 7px;vertical-align:middle">v3.1 BLOCKED TIEBREAK</small></div><div id="roomPill" class="pill hidden"></div></header>
 
 <section id="lobby" class="card lobby">
   <div class="hero"><div class="crown">🀄</div><h1>HAY Gaple</h1><p>Gaple online 4 pemain. Satu room, empat HP, satu pemenang.</p></div>
@@ -66,7 +66,7 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
 <div id="confetti" class="confetti"></div>
 
 <script type="module">
-console.info("HAY Gaple v2.9 SIDE SELECT loaded");
+console.info("HAY Gaple v3.1 BLOCKED TIEBREAK loaded");
 const CONFIG = {
   apiKey: "AIzaSyAkOtTs5esLNHwRzFGDaoE1uG5fx6R266s",
   authDomain: "gaple-5f664.firebaseapp.com",
@@ -116,9 +116,16 @@ function toggleSound(){soundOn=!soundOn;localStorage.setItem('hayGapleSound',sou
 function deck(){let d=[];for(let a=0;a<=6;a++)for(let b=a;b<=6;b++)d.push({a,b});return d}
 function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function points(c){return c.a+c.b}
+function handFaces(hand){return (hand||[]).flatMap(c=>[c.a,c.b]).sort((a,b)=>a-b)}
+function compareFaceVectors(a,b){
+  const n=Math.max(a.length,b.length);
+  for(let i=0;i<n;i++){const av=a[i]??99,bv=b[i]??99;if(av!==bv)return av-bv}
+  return 0;
+}
+function sameFaceVectors(a,b){return a.length===b.length&&a.every((v,i)=>v===b[i])}
 function canPlay(c,left,right){return c.a===left||c.b===left||c.a===right||c.b===right}
 function playersOf(r){return Object.values(r.players||{}).sort((a,b)=>String(a.id).localeCompare(String(b.id)))}
-function makeRoom(){return {players:{},hand:{},board:[],left:null,right:null,turn:0,started:false,opening:null,passes:0,winner:null,scores:{},history:[],createdAt:Date.now()}}
+function makeRoom(){return {players:{},hand:{},board:[],left:null,right:null,turn:0,started:false,opening:null,passes:0,winner:null,winnerReason:null,winnerPips:null,winnerTiles:null,winnerLowFace:null,winnerTiebreak:null,scores:{},history:[],createdAt:Date.now()}}
 function humanError(e){
   const m=String(e?.message||e||'Terjadi kesalahan');
   if(m.includes('permission-denied')) return 'Firestore menolak akses. Cek Firestore Rules.';
@@ -132,7 +139,7 @@ function buildRound(players,oldScores={}){
   const starter=ps.findIndex(p=>hands[p.id].some(c=>c.a===0&&c.b===0));
   return {
     hand:hands,board:[],left:null,right:null,
-    turn:starter<0?0:starter,started:true,opening:null,passes:0,winner:null,
+    turn:starter<0?0:starter,started:true,opening:null,passes:0,winner:null,winnerReason:null,winnerPips:null,winnerTiles:null,winnerLowFace:null,winnerTiebreak:null,
     scores:{...oldScores}
   };
 }
@@ -390,7 +397,15 @@ function render(){
     winnerShown=r.winner;
     const p=r.players?.[r.winner];
     $('winText').textContent=p?.id===me?.id?'👑 ANDA ADALAH KING GAPLE':'👑 '+(p?.name||'Pemenang')+' ADALAH KING GAPLE';
-    $('winSub').textContent='Selamat! Ronde selesai.';
+    if(r.winnerReason==='blocked'){
+      let extra='';
+      if(r.winnerTiebreak==='tiles')extra=' Total titik seri, jadi dipilih yang memegang keping paling sedikit: '+(r.winnerTiles??0)+' keping.';
+      else if(r.winnerTiebreak==='faces')extra=' Total titik dan jumlah keping seri, jadi dipilih dari angka/titik terkecil di tangan: '+(r.winnerLowFace??0)+' (0 lebih kecil dari 1, lalu 2, dst.).';
+      else if(r.winnerTiebreak==='seat')extra=' Semua pembanding masih identik, jadi sistem memakai urutan pemain yang konsisten sebagai penentu terakhir.';
+      $('winSub').textContent='Gaple buntu: semua pemain Pass. Pemenang punya total titik tersisa paling kecil: '+(r.winnerPips??0)+' titik.'+extra;
+    }else{
+      $('winSub').textContent='Selamat! Gaple habis lebih dulu.';
+    }
     $('modal').classList.remove('hidden');
     confetti();
   }
@@ -523,6 +538,11 @@ async function play(){
 
       if(!hand.length){
         patch.winner=me.id;
+        patch.winnerReason='empty';
+        patch.winnerPips=0;
+        patch.winnerTiles=0;
+        patch.winnerLowFace=0;
+        patch.winnerTiebreak='empty';
         patch.scores={...(r.scores||{}),[me.id]:(r.scores?.[me.id]||0)+100};
       }else{
         patch.turn=(r.turn+1)%ps.length;
@@ -556,11 +576,44 @@ async function pass(){
       const passes=(r.passes||0)+1;
       const patch={passes};
       if(passes>=ps.length){
-        const winner=ps.slice().sort((a,b)=>
-          (r.hand?.[a.id]||[]).reduce((x,c)=>x+points(c),0)-
-          (r.hand?.[b.id]||[]).reduce((x,c)=>x+points(c),0)
-        )[0];
+        // GAPLE TERTUTUP/BUNTU — penentuan pemenang berjenjang:
+        // 1) total titik paling kecil
+        // 2) jika seri, jumlah keping paling sedikit
+        // 3) jika masih seri, bandingkan angka/titik di tangan dari paling kecil
+        //    (0 menang atas 1, lalu 1 atas 2, dst.; bila sama lanjut angka berikutnya)
+        // 4) jika seluruh susunan angka tetap identik, pakai urutan seat yang konsisten.
+        const stats=ps.map((p,seat)=>{
+          const h=r.hand?.[p.id]||[];
+          const faces=handFaces(h);
+          return {id:p.id,seat,total:h.reduce((sum,c)=>sum+points(c),0),count:h.length,faces,low:faces[0]??99};
+        });
+
+        const minPips=Math.min(...stats.map(x=>x.total));
+        let candidates=stats.filter(x=>x.total===minPips);
+        let tieBreak='pips';
+
+        if(candidates.length>1){
+          const minCount=Math.min(...candidates.map(x=>x.count));
+          candidates=candidates.filter(x=>x.count===minCount);
+          tieBreak='tiles';
+        }
+
+        if(candidates.length>1){
+          candidates.sort((a,b)=>compareFaceVectors(a.faces,b.faces)||a.seat-b.seat);
+          const bestFaces=candidates[0].faces;
+          const sameBest=candidates.filter(x=>sameFaceVectors(x.faces,bestFaces));
+          tieBreak=sameBest.length===1?'faces':'seat';
+          candidates=sameBest.length?sameBest:[candidates[0]];
+        }
+
+        const winnerStat=candidates.sort((a,b)=>a.seat-b.seat)[0];
+        const winner=ps.find(p=>p.id===winnerStat.id);
         patch.winner=winner.id;
+        patch.winnerReason='blocked';
+        patch.winnerPips=winnerStat.total;
+        patch.winnerTiles=winnerStat.count;
+        patch.winnerLowFace=winnerStat.low===99?null:winnerStat.low;
+        patch.winnerTiebreak=tieBreak;
         patch.scores={...(r.scores||{}),[winner.id]:(r.scores?.[winner.id]||0)+100};
       }else{
         patch.turn=(r.turn+1)%ps.length;
@@ -615,7 +668,7 @@ async function leaveRoom(){
         const hand={...(r.hand||{})};
         delete players[me.id];
         delete hand[me.id];
-        tx.update(ref,{players,hand,board:[],left:null,right:null,turn:0,started:false,opening:null,passes:0,winner:null});
+        tx.update(ref,{players,hand,board:[],left:null,right:null,turn:0,started:false,opening:null,passes:0,winner:null,winnerReason:null,winnerPips:null,winnerTiles:null,winnerLowFace:null,winnerTiebreak:null});
       });
     }catch(e){console.error('Leave update:',e)}
   }
