@@ -15,7 +15,7 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
 </head>
 <body>
 <div class="app">
-<header class="top"><div class="brand">🀄 <span>HAY</span> Gaple <small style="font-size:11px;color:#f5c451;border:1px solid #f5c45155;border-radius:999px;padding:3px 7px;vertical-align:middle">v2.2 FIX</small></div><div id="roomPill" class="pill hidden"></div></header>
+<header class="top"><div class="brand">🀄 <span>HAY</span> Gaple <small style="font-size:11px;color:#f5c451;border:1px solid #f5c45155;border-radius:999px;padding:3px 7px;vertical-align:middle">v2.3 FIRESTORE FIX</small></div><div id="roomPill" class="pill hidden"></div></header>
 
 <section id="lobby" class="card lobby">
   <div class="hero"><div class="crown">🀄</div><h1>HAY Gaple</h1><p>Gaple online 4 pemain. Satu room, empat HP, satu pemenang.</p></div>
@@ -58,7 +58,7 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
 <div id="confetti" class="confetti"></div>
 
 <script type="module">
-console.info("HAY Gaple v2.2 FIX loaded");
+console.info("HAY Gaple v2.3 FIRESTORE FIX loaded");
 const CONFIG = {
   apiKey: "AIzaSyAkOtTs5esLNHwRzFGDaoE1uG5fx6R266s",
   authDomain: "gaple-5f664.firebaseapp.com",
@@ -100,10 +100,10 @@ function playerId(){
   if(!v){v=crypto.randomUUID();sessionStorage.setItem('hayGaplePlayerId',v)}
   return v;
 }
-function deck(){let d=[];for(let a=0;a<=6;a++)for(let b=a;b<=6;b++)d.push([a,b]);return d}
+function deck(){let d=[];for(let a=0;a<=6;a++)for(let b=a;b<=6;b++)d.push({a,b});return d}
 function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function points(c){return c[0]+c[1]}
-function canPlay(c,left,right){return c[0]===left||c[1]===left||c[0]===right||c[1]===right}
+function points(c){return c.a+c.b}
+function canPlay(c,left,right){return c.a===left||c.b===left||c.a===right||c.b===right}
 function playersOf(r){return Object.values(r.players||{}).sort((a,b)=>String(a.id).localeCompare(String(b.id)))}
 function makeRoom(){return {players:{},hand:{},board:[],left:null,right:null,turn:0,started:false,opening:null,passes:0,winner:null,scores:{},history:[],createdAt:Date.now()}}
 function humanError(e){
@@ -116,7 +116,7 @@ function buildRound(players,oldScores={}){
   if(ps.length!==4) throw new Error('Permainan membutuhkan tepat 4 pemain');
   const d=shuffle(deck()), hands={};
   ps.forEach((p,i)=>hands[p.id]=d.slice(i*7,i*7+7));
-  const starter=ps.findIndex(p=>hands[p.id].some(c=>c[0]===0&&c[1]===0));
+  const starter=ps.findIndex(p=>hands[p.id].some(c=>c.a===0&&c.b===0));
   return {
     hand:hands,board:[],left:null,right:null,
     turn:starter<0?0:starter,started:true,opening:null,passes:0,winner:null,
@@ -240,7 +240,7 @@ function render(){
 
   const hand=r.hand?.[me?.id]||[];
   const canAct=!!(r.started&&!r.winner&&turnPlayer?.id===me?.id);
-  $('hand').innerHTML=hand.map((c,i)=>`<div class="domino ${selected===i?'selected':''}" onclick="selectCard(${i})">${pip(c[0])}<span></span>${pip(c[1])}</div>`).join('');
+  $('hand').innerHTML=hand.map((c,i)=>`<div class="domino ${selected===i?'selected':''}" onclick="selectCard(${i})">${pip(c.a)}<span></span>${pip(c.b)}</div>`).join('');
 
   if(r.winner){
     $('status').textContent='Permainan selesai.';
@@ -270,7 +270,7 @@ function render(){
 }
 
 function pip(n){return n===0?'':('●'.repeat(n))}
-function domino(c){return `<div class="domino">${pip(c[0])}<span></span>${pip(c[1])}</div>`}
+function domino(c){return `<div class="domino">${pip(c.a)}<span></span>${pip(c.b)}</div>`}
 window.selectCard=i=>{
   if(!localState||localState.winner||!localState.started)return;
   const t=currentTurnPlayer(localState);
@@ -280,27 +280,27 @@ window.selectCard=i=>{
 };
 
 function placeOnBoard(card,board,left,right){
-  const c=[card[0],card[1]];
+  const c={a:card.a,b:card.b};
   // Prefer left when a tile can legally be placed on both ends.
-  if(c[0]===left){
-    const oc=[c[1],c[0]];
+  if(c.a===left){
+    const oc={a:c.b,b:c.a};
     board.unshift(oc);
-    return {board,left:c[1],right};
+    return {board,left:c.b,right};
   }
-  if(c[1]===left){
-    const oc=[c[0],c[1]];
+  if(c.b===left){
+    const oc={a:c.a,b:c.b};
     board.unshift(oc);
-    return {board,left:c[0],right};
+    return {board,left:c.a,right};
   }
-  if(c[0]===right){
-    const oc=[c[0],c[1]];
+  if(c.a===right){
+    const oc={a:c.a,b:c.b};
     board.push(oc);
-    return {board,left,right:c[1]};
+    return {board,left,right:c.b};
   }
-  if(c[1]===right){
-    const oc=[c[1],c[0]];
+  if(c.b===right){
+    const oc={a:c.b,b:c.a};
     board.push(oc);
-    return {board,left,right:c[0]};
+    return {board,left,right:c.a};
   }
   return null;
 }
@@ -320,14 +320,14 @@ async function play(){
       if(r.winner)throw new Error('Ronde sudah selesai');
       if(idx!==r.turn)throw new Error('Belum giliran kamu');
 
-      const hand=[...(r.hand?.[me.id]||[])].map(c=>[c[0],c[1]]);
+      const hand=[...(r.hand?.[me.id]||[])].map(c=>({a:c.a,b:c.b}));
       if(!hand[selectedIndex])throw new Error('Gaple berubah. Pilih ulang kepingnya.');
       const c=hand[selectedIndex];
-      let board=(r.board||[]).map(x=>[x[0],x[1]]);
+      let board=(r.board||[]).map(x=>({a:x.a,b:x.b}));
       let left=r.left, right=r.right, opening=r.opening||null;
 
       if(!board.length){
-        if(c[0]!==0||c[1]!==0)throw new Error('Pembukaan wajib 0-0');
+        if(c.a!==0||c.b!==0)throw new Error('Pembukaan wajib 0-0');
         board=[c];left=0;right=0;opening=c;
       }else{
         if(!canPlay(c,left,right))throw new Error('Gaple tidak nyambung');
