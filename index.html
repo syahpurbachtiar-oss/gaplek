@@ -13,11 +13,11 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
 .game{display:grid;grid-template-columns:1fr 310px;gap:16px}.table{min-height:720px;padding:16px;position:relative;overflow:hidden;background:radial-gradient(circle,#17482f 0,#0c2b21 48%,#081b17 100%);border-color:#3c805d66}.players{display:grid;grid-template-columns:1fr 1fr;gap:9px}.seat{padding:10px 12px;border-radius:15px;background:#07140fcc;border:1px solid #ffffff10;display:flex;align-items:center;gap:8px}.seat .av{font-size:25px}.seat.me{outline:2px solid #f5c45166}.seat .info{flex:1}.seat b{font-size:13px}.seat small{display:block;color:#9eb19f}.turn{color:var(--gold)!important;font-weight:800}
 .board{min-height:430px;display:flex;align-items:center;justify-content:center;padding:24px 10px;overflow:hidden}.domino-track.square-loop{position:relative;width:min(100%,560px);aspect-ratio:1/1;margin:auto;filter:drop-shadow(0 10px 25px rgba(0,0,0,.18))}.board .board-piece{position:absolute;background:rgba(247,243,232,.96);backdrop-filter:blur(3px)}.board .board-piece.horiz{flex-direction:row;border-radius:7px}.board .board-piece.horiz:after{left:50%;right:auto;top:5px;bottom:5px;border-top:0;border-left:2px solid #aaa}.board .board-piece.horiz .domino-half{width:50%;height:100%}.board .board-piece.vert{flex-direction:column;border-radius:7px}.board .board-piece.vert:after{left:6px;right:6px;top:50%;bottom:auto;border-top:2px solid #aaa;border-left:0}.board .board-piece.vert .domino-half{width:100%;height:50%}.board .board-piece.corner-tr{transform:translate(8px,6px) rotate(10deg);transform-origin:right top;z-index:4}.board .board-piece.corner-br{transform:translate(-6px,8px) rotate(-10deg);transform-origin:right bottom;z-index:4}.board .board-piece.corner-bl{transform:translate(-8px,-6px) rotate(10deg);transform-origin:left bottom;z-index:4}.board .board-piece.corner-tl{transform:translate(6px,-8px) rotate(-10deg);transform-origin:left top;z-index:4}.board .board-piece.fresh-right{animation:throwRight .48s cubic-bezier(.2,.8,.2,1)}.board .board-piece.fresh-down{animation:throwDown .48s cubic-bezier(.2,.8,.2,1)}.board .board-piece.fresh-left{animation:throwLeft .48s cubic-bezier(.2,.8,.2,1)}.board .board-piece.fresh-up{animation:throwUp .48s cubic-bezier(.2,.8,.2,1)}@keyframes throwRight{0%{opacity:0;transform:translate(-30px,0) scale(.82) rotate(-10deg)}60%{opacity:1;transform:translate(6px,0) scale(1.03) rotate(2deg)}100%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}}@keyframes throwDown{0%{opacity:0;transform:translate(0,-30px) scale(.82) rotate(-10deg)}60%{opacity:1;transform:translate(0,6px) scale(1.03) rotate(2deg)}100%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}}@keyframes throwLeft{0%{opacity:0;transform:translate(30px,0) scale(.82) rotate(10deg)}60%{opacity:1;transform:translate(-6px,0) scale(1.03) rotate(-2deg)}100%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}}@keyframes throwUp{0%{opacity:0;transform:translate(0,30px) scale(.82) rotate(10deg)}60%{opacity:1;transform:translate(0,-6px) scale(1.03) rotate(-2deg)}100%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}}
 .domino{width:46px;height:82px;background:#f7f3e8;color:#111;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 5px 12px #0007;font-weight:900;position:relative;overflow:hidden}.domino:after{content:"";position:absolute;left:6px;right:6px;top:50%;border-top:2px solid #aaa}.domino-half{width:100%;height:50%;position:relative;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:4px}.dot{width:7px;height:7px;background:#111;border-radius:50%;align-self:center;justify-self:center}.dot.p1{grid-area:1/1}.dot.p2{grid-area:1/2}.dot.p3{grid-area:1/3}.dot.p4{grid-area:2/1}.dot.p5{grid-area:2/2}.dot.p6{grid-area:2/3}.dot.p7{grid-area:3/1}.dot.p8{grid-area:3/2}.dot.p9{grid-area:3/3}.hand{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:12px 0}.hand .domino{width:44px;height:80px;cursor:pointer;transition:.15s}.hand .domino:hover{transform:translateY(-9px)}.hand .domino.selected{transform:translateY(-12px);outline:3px solid var(--gold)}.controls{display:flex;justify-content:center;gap:8px;margin-top:5px}.sidebar{padding:14px;display:flex;flex-direction:column;gap:12px}.sidebox{padding:13px;border-radius:17px;background:#0b1222;border:1px solid var(--line)}.sidebox h3{margin:0 0 10px;font-size:14px}.chat{height:260px;overflow:auto;display:flex;flex-direction:column;gap:7px}.msg{background:#17213a;border-radius:12px;padding:7px 9px;font-size:12px}.msg b{color:var(--gold)}.chatbar{display:flex;gap:6px;margin-top:7px}.chatbar input{min-width:0;flex:1;background:#070c18;color:#fff;border:1px solid var(--line);border-radius:10px;padding:9px}.emotes{display:flex;gap:5px}.emotes button{background:#1b2742;border:0;border-radius:10px;padding:7px}.scoreline{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.leader{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #ffffff0d}.leader:last-child{border:0}.modal{position:fixed;inset:0;background:#02050bcc;display:flex;align-items:center;justify-content:center;padding:18px;z-index:20}.modal .card{max-width:520px;width:100%;padding:30px;text-align:center}.win{font-size:42px;font-weight:1000;background:linear-gradient(90deg,#fff,#f5c451,#fff);-webkit-background-clip:text;color:transparent}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#17213a;border:1px solid var(--line);padding:10px 15px;border-radius:999px;z-index:30}.confetti{position:fixed;inset:0;pointer-events:none;z-index:25}.piece{position:absolute;width:8px;height:16px;animation:fall 1.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}@media(max-width:850px){.game{grid-template-columns:1fr}.table{min-height:620px}.sidebar{order:2}.board{min-height:290px}.lobby{margin:4vh auto;padding:20px}.top{align-items:flex-start}.players{grid-template-columns:1fr 1fr}}
-.seat.active-turn{box-shadow:0 0 0 1px #f5c45155,inset 0 0 18px #f5c45115}.turn-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:6px;box-shadow:0 0 12px #f5c451;animation:pulseTurn 1s ease-in-out infinite}@keyframes pulseTurn{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.28);opacity:.7}}.board .board-piece.end-left{box-shadow:0 0 0 2px rgba(112,167,255,.45),0 0 16px rgba(112,167,255,.28)}.board .board-piece.end-right{box-shadow:0 0 0 2px rgba(245,196,81,.5),0 0 18px rgba(245,196,81,.3)}.board .board-piece.end-left:before,.board .board-piece.end-right:before{content:attr(data-end);position:absolute;top:-10px;right:-6px;min-width:18px;height:18px;border-radius:999px;background:#0b1222;color:#fff;font-size:11px;display:grid;place-items:center;border:1px solid #ffffff22;box-shadow:0 4px 12px #0007}.hand .domino{transition:transform .15s,opacity .15s,box-shadow .15s,outline-color .15s}.hand .domino.playable{box-shadow:0 0 0 2px rgba(57,217,138,.35),0 7px 18px rgba(0,0,0,.45)}.hand .domino.playable:before{content:"";position:absolute;inset:0;border-radius:8px;box-shadow:inset 0 0 0 2px rgba(57,217,138,.45);pointer-events:none}.hand .domino.unplayable{opacity:.42;filter:saturate(.82)}.domino.fly{position:fixed;z-index:60;pointer-events:none;margin:0;transition:left .34s cubic-bezier(.2,.8,.2,1),top .34s cubic-bezier(.2,.8,.2,1),width .34s cubic-bezier(.2,.8,.2,1),height .34s cubic-bezier(.2,.8,.2,1),transform .34s cubic-bezier(.2,.8,.2,1),opacity .34s ease;width:44px;height:80px}.status-strong{color:#fff;font-weight:700}.meta-row{display:flex;gap:8px;flex-wrap:wrap}.mini-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;background:#121d33;border:1px solid var(--line);font-size:12px;color:#dce6ff}.mini-pill b{font-size:12px}.mini-pill .signal{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(57,217,138,.45)}.mini-pill.off .signal{background:var(--red);box-shadow:0 0 12px rgba(255,100,124,.45)}.mini-pill.wait .signal{background:var(--gold);box-shadow:0 0 12px rgba(245,196,81,.45)}.icon-btn{border:1px solid var(--line);background:#121d33;color:#fff;border-radius:999px;padding:8px 12px;font-weight:700;cursor:pointer}</style>
+.seat.active-turn{box-shadow:0 0 0 1px #f5c45155,inset 0 0 18px #f5c45115}.turn-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:6px;box-shadow:0 0 12px #f5c451;animation:pulseTurn 1s ease-in-out infinite}@keyframes pulseTurn{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.28);opacity:.7}}.board .board-piece.end-left{box-shadow:0 0 0 2px rgba(112,167,255,.45),0 0 16px rgba(112,167,255,.28)}.board .board-piece.end-right{box-shadow:0 0 0 2px rgba(245,196,81,.5),0 0 18px rgba(245,196,81,.3)}.hand .domino{transition:transform .15s,opacity .15s,box-shadow .15s,outline-color .15s}.hand .domino.playable{box-shadow:0 0 0 2px rgba(57,217,138,.35),0 7px 18px rgba(0,0,0,.45)}.hand .domino.playable:before{content:"";position:absolute;inset:0;border-radius:8px;box-shadow:inset 0 0 0 2px rgba(57,217,138,.45);pointer-events:none}.hand .domino.unplayable{opacity:.42;filter:saturate(.82)}.domino.fly{position:fixed;z-index:60;pointer-events:none;margin:0;transition:left .34s cubic-bezier(.2,.8,.2,1),top .34s cubic-bezier(.2,.8,.2,1),width .34s cubic-bezier(.2,.8,.2,1),height .34s cubic-bezier(.2,.8,.2,1),transform .34s cubic-bezier(.2,.8,.2,1),opacity .34s ease;width:44px;height:80px}.status-strong{color:#fff;font-weight:700}.meta-row{display:flex;gap:8px;flex-wrap:wrap}.mini-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;background:#121d33;border:1px solid var(--line);font-size:12px;color:#dce6ff}.mini-pill b{font-size:12px}.mini-pill .signal{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(57,217,138,.45)}.mini-pill.off .signal{background:var(--red);box-shadow:0 0 12px rgba(255,100,124,.45)}.mini-pill.wait .signal{background:var(--gold);box-shadow:0 0 12px rgba(245,196,81,.45)}.icon-btn{border:1px solid var(--line);background:#121d33;color:#fff;border-radius:999px;padding:8px 12px;font-weight:700;cursor:pointer}.side-choice{display:flex;justify-content:center;align-items:center;gap:10px;min-height:42px;margin:3px 0 7px}.side-choice.hidden{display:none!important}.side-btn{border:1px solid var(--line);border-radius:13px;padding:10px 15px;font-weight:900;background:#151f36;color:#fff;cursor:pointer;transition:transform .14s,box-shadow .14s,border-color .14s}.side-btn:hover{transform:translateY(-2px)}.side-btn.left{border-color:#70a7ff66}.side-btn.right{border-color:#f5c45166}.side-btn.left.active{background:#1b3155;border-color:#70a7ff;box-shadow:0 0 18px #70a7ff44}.side-btn.right.active{background:#3b321a;border-color:#f5c451;box-shadow:0 0 18px #f5c45144}.side-choice-label{font-size:12px;color:var(--muted);font-weight:700}.board .board-piece.pick-left{box-shadow:0 0 0 3px #70a7ff,0 0 24px #70a7ff66}.board .board-piece.pick-right{box-shadow:0 0 0 3px #f5c451,0 0 24px #f5c45166}</style>
 </head>
 <body>
 <div class="app">
-<header class="top"><div class="brand">🀄 <span>HAY</span> Gaple <small style="font-size:11px;color:#f5c451;border:1px solid #f5c45155;border-radius:999px;padding:3px 7px;vertical-align:middle">v2.8 POLISH LITE</small></div><div id="roomPill" class="pill hidden"></div></header>
+<header class="top"><div class="brand">🀄 <span>HAY</span> Gaple <small style="font-size:11px;color:#f5c451;border:1px solid #f5c45155;border-radius:999px;padding:3px 7px;vertical-align:middle">v2.9 SIDE SELECT</small></div><div id="roomPill" class="pill hidden"></div></header>
 
 <section id="lobby" class="card lobby">
   <div class="hero"><div class="crown">🀄</div><h1>HAY Gaple</h1><p>Gaple online 4 pemain. Satu room, empat HP, satu pemenang.</p></div>
@@ -37,6 +37,11 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
    <div id="players" class="players"></div>
    <div id="board" class="board"></div>
    <div id="hand" class="hand"></div>
+   <div id="sideChoice" class="side-choice hidden">
+     <span class="side-choice-label">Pilih sisi:</span>
+     <button id="chooseLeft" class="side-btn left">← Kiri</button>
+     <button id="chooseRight" class="side-btn right">Kanan →</button>
+   </div>
    <div class="controls">
      <button id="play" class="btn green">🀄 Mainkan</button>
      <button id="pass" class="btn secondary">Pass</button>
@@ -61,7 +66,7 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
 <div id="confetti" class="confetti"></div>
 
 <script type="module">
-console.info("HAY Gaple v2.8 POLISH LITE loaded");
+console.info("HAY Gaple v2.9 SIDE SELECT loaded");
 const CONFIG = {
   apiKey: "AIzaSyAkOtTs5esLNHwRzFGDaoE1uG5fx6R266s",
   authDomain: "gaple-5f664.firebaseapp.com",
@@ -81,7 +86,7 @@ import {
 const app=initializeApp(CONFIG), db=getFirestore(app);
 const $=id=>document.getElementById(id);
 const AV=['😎','🦁','🐯','🐼','🐸','🐵','🦊','🐨','🐲','👽','🤠','🥷'];
-let avatar=AV[0], roomId=null, me=null, unsubRoom=null, unsubChat=null, selected=null, localState=null;
+let avatar=AV[0], roomId=null, me=null, unsubRoom=null, unsubChat=null, selected=null, selectedSide=null, localState=null;
 let starting=false, winnerShown=null, boardAnimIndex=null, boardAnimDir=null, boardAnimTimer=null, audioCtx=null;
 let pendingAction=false, soundOn=localStorage.getItem('hayGapleSound')!=='off';
 
@@ -210,10 +215,19 @@ async function joinAfter(){
   unsubRoom=onSnapshot(doc(db,'rooms',roomId),s=>{
     if(!s.exists())return;
     updateConnectionState(navigator.onLine?'ok':'wait',navigator.onLine?'Realtime aktif':'Internet terputus');
-    const prevLen=(localState?.board||[]).length;
+    const prevBoard=(localState?.board||[]).map(c=>({a:c.a,b:c.b}));
+    const prevLen=prevBoard.length;
     localState=s.data();
-    const nextLen=(localState?.board||[]).length;
-    if(nextLen>prevLen)triggerBoardAnim(nextLen-1,directionForIndex(nextLen-1));
+    const nextBoard=(localState?.board||[]);
+    const nextLen=nextBoard.length;
+    if(nextLen>prevLen){
+      let addedIndex=nextLen-1, addedDir=directionForIndex(nextLen-1);
+      if(prevLen>0 && nextLen===prevLen+1){
+        const insertedLeft=prevBoard.every((c,i)=>nextBoard[i+1]&&nextBoard[i+1].a===c.a&&nextBoard[i+1].b===c.b);
+        if(insertedLeft){addedIndex=0;addedDir='left'}
+      }
+      triggerBoardAnim(addedIndex,addedDir);
+    }
     if(nextLen===0&&boardAnimTimer){clearTimeout(boardAnimTimer);boardAnimTimer=null;boardAnimIndex=null;boardAnimDir=null;}
     render();
     const count=Object.keys(localState.players||{}).length;
@@ -317,7 +331,7 @@ function render(){
   $('players').innerHTML=ps.map((p,i)=>domSeat(p,i,r.turn===i&&r.started,(r.hand?.[p.id]||[]).length)).join('');
 
   if((r.board||[]).length){
-    $('board').innerHTML=renderBoard(r.board, boardAnimIndex, r.left, r.right);
+    $('board').innerHTML=renderBoard(r.board, boardAnimIndex, r.left, r.right, selectedSide);
   }else if(ps.length<4){
     $('board').innerHTML=`<div style="text-align:center;color:#a8b8ad">Menunggu pemain ${ps.length}/4…</div>`;
   }else if(!r.started){
@@ -335,6 +349,23 @@ function render(){
     return domino(c,'domino '+(selected===i?'selected ':'')+(playable?'playable ':'')+(dim?'unplayable ':''),`onclick="selectCard(${i})"`);
   }).join('');
 
+  const selectedCard=(selected!==null?hand[selected]:null);
+  const canLeft=!!(selectedCard&&!boardEmpty&&(selectedCard.a===r.left||selectedCard.b===r.left));
+  const canRight=!!(selectedCard&&!boardEmpty&&(selectedCard.a===r.right||selectedCard.b===r.right));
+  const needsSideChoice=!!(canAct&&selectedCard&&canLeft&&canRight);
+  if(selectedCard&&!boardEmpty&&!needsSideChoice){
+    if(canLeft&&!canRight)selectedSide='left';
+    else if(canRight&&!canLeft)selectedSide='right';
+  }
+  if(boardEmpty&&selectedCard)selectedSide='right';
+  $('sideChoice').classList.toggle('hidden',!needsSideChoice);
+  $('chooseLeft').classList.toggle('active',needsSideChoice&&selectedSide==='left');
+  $('chooseRight').classList.toggle('active',needsSideChoice&&selectedSide==='right');
+  if(needsSideChoice){
+    $('chooseLeft').textContent='← Kiri ('+r.left+')';
+    $('chooseRight').textContent='Kanan ('+r.right+') →';
+  }
+
   if(r.winner){
     $('status').innerHTML='<span class="status-strong">Permainan selesai.</span>';
   }else if(ps.length<4){
@@ -342,15 +373,15 @@ function render(){
   }else if(!r.started){
     $('status').innerHTML='Menyiapkan <span class="status-strong">keping gaple</span>…';
   }else if(canAct){
-    $('status').innerHTML='<span class="status-strong">Giliran kamu</span> — pilih gaple lalu klik Mainkan';
+    $('status').innerHTML=needsSideChoice&&selectedSide===null?'<span class="status-strong">Pilih sisi kiri atau kanan</span> untuk gaple ini':'<span class="status-strong">Giliran kamu</span> — pilih gaple lalu klik Mainkan';
   }else{
     $('status').innerHTML='Giliran: <span class="status-strong">'+(turnPlayer?.name||'…')+'</span>';
   }
 
-  $('play').disabled=!canAct||selected===null;
+  $('play').disabled=!canAct||selected===null||(needsSideChoice&&selectedSide===null);
   $('pass').disabled=!canAct;
   const hinted=canAct?hand.some(c=>boardEmpty?(c.a===0&&c.b===0):canPlay(c,r.left,r.right)):false;
-  if($('hintBox'))$('hintBox').textContent=pendingAction?'Mengirim langkah ke room…':canAct?(hinted?'Tip: kartu yang bisa dimainkan menyala hijau. Ujung biru & emas menunjukkan sambungan aktif.':'Tidak ada kartu yang cocok. Kamu boleh tekan Pass.'):'Tip: tunggu giliran kamu untuk membuang gaple.';
+  if($('hintBox'))$('hintBox').textContent=pendingAction?'Mengirim langkah ke room…':needsSideChoice&&selectedSide===null?'Gaple ini cocok di dua ujung. Pilih Kiri atau Kanan.':canAct?(hinted?'Tip: kartu yang bisa dimainkan menyala hijau. Ujung biru & emas menunjukkan sambungan aktif.':'Tidak ada kartu yang cocok. Kamu boleh tekan Pass.'):'Tip: tunggu giliran kamu untuk membuang gaple.';
 
   const lb=Object.entries(r.scores||{}).sort((a,b)=>b[1]-a[1]);
   $('leaderboard').innerHTML=lb.length?lb.map((x,i)=>`<div class="leader"><span>#${i+1} ${esc(r.players?.[x[0]]?.name||'')}</span><b>${x[1]||0}</b></div>`).join(''):'<div class="small">Skor muncul setelah ronde.</div>';
@@ -381,18 +412,16 @@ function pipFace(n){
 function domino(c,cls='domino',attrs=''){
   return `<div class="${cls}" ${attrs}>${pipFace(c.a)}${pipFace(c.b)}</div>`;
 }
-function renderBoard(cards,animIndex=null,leftVal=null,rightVal=null){
+function renderBoard(cards,animIndex=null,leftVal=null,rightVal=null,side=null){
   const items=cards.slice(0,28).map((c,i)=>{
     const m=moveTargetMetrics(i);
     let cls=(m.w>m.h?'horiz':'vert');
     if(i===6)cls+=' corner-tr'; else if(i===13)cls+=' corner-br'; else if(i===20)cls+=' corner-bl'; else if(i===27)cls+=' corner-tl';
-    if(i===0)cls+=' end-left';
-    if(i===cards.length-1)cls+=' end-right';
+    if(i===0)cls+=' end-left'+(side==='left'?' pick-left':'');
+    if(i===cards.length-1)cls+=' end-right'+(side==='right'?' pick-right':'');
     if(i===animIndex)cls+=' fresh-'+(boardAnimDir||directionForIndex(i));
     const left=((m.x/m.SIZE)*100).toFixed(4), top=((m.y/m.SIZE)*100).toFixed(4), width=((m.w/m.SIZE)*100).toFixed(4), height=((m.h/m.SIZE)*100).toFixed(4);
     let attrs='style="left:'+left+'%;top:'+top+'%;width:'+width+'%;height:'+height+'%;"';
-    if(i===0)attrs+=' data-end="'+(leftVal??'')+'"';
-    if(i===cards.length-1)attrs+=' data-end="'+(rightVal??'')+'"';
     return domino(c,'domino board-piece '+cls,attrs);
   }).join('');
   return '<div class="domino-track square-loop">'+items+'</div>';
@@ -403,34 +432,38 @@ window.selectCard=i=>{
   const t=currentTurnPlayer(localState);
   if(t?.id!==me?.id)return toast('Belum giliran kamu');
   const hand=localState.hand?.[me?.id]||[]; const c=hand[i]; if(!c)return;
-  const playable=!(localState.board||[]).length?(c.a===0&&c.b===0):canPlay(c,localState.left,localState.right);
+  const boardEmpty=!(localState.board||[]).length;
+  const playable=boardEmpty?(c.a===0&&c.b===0):canPlay(c,localState.left,localState.right);
   if(!playable)return toast('Pilih gaple yang nyambung');
-  selected=i; render();
+  selected=i;
+  if(boardEmpty)selectedSide='right';
+  else{
+    const canLeft=c.a===localState.left||c.b===localState.left;
+    const canRight=c.a===localState.right||c.b===localState.right;
+    selectedSide=canLeft&&canRight?null:(canLeft?'left':'right');
+  }
+  render();
+};
+window.chooseSide=side=>{
+  if(pendingAction||selected===null||!localState)return;
+  const c=localState.hand?.[me?.id]?.[selected]; if(!c)return;
+  const ok=side==='left'?(c.a===localState.left||c.b===localState.left):(c.a===localState.right||c.b===localState.right);
+  if(!ok)return toast('Gaple tidak cocok di sisi '+(side==='left'?'kiri':'kanan'));
+  selectedSide=side; render();
 };
 
-function placeOnBoard(card,board,left,right){
+function placeOnBoard(card,board,left,right,side){
   const c={a:card.a,b:card.b};
-  // Prioritas visual: keping baru selalu dilempar ke arah kanan.
-  // Jika hanya cocok di ujung kiri, rantai dibalik secara ekuivalen lalu keping ditambah di kanan.
-  if(c.a===right){
-    board.push({a:c.a,b:c.b});
-    return {board,left,right:c.b};
+  if(side==='right'){
+    if(c.a===right){board.push({a:c.a,b:c.b});return {board,left,right:c.b}}
+    if(c.b===right){board.push({a:c.b,b:c.a});return {board,left,right:c.a}}
+    return null;
   }
-  if(c.b===right){
-    board.push({a:c.b,b:c.a});
-    return {board,left,right:c.a};
-  }
-  if(c.a===left || c.b===left){
-    board=board.slice().reverse().map(x=>({a:x.b,b:x.a}));
-    const newLeft=right, newRight=left;
-    if(c.a===newRight){
-      board.push({a:c.a,b:c.b});
-      return {board,left:newLeft,right:c.b};
-    }
-    if(c.b===newRight){
-      board.push({a:c.b,b:c.a});
-      return {board,left:newLeft,right:c.a};
-    }
+  if(side==='left'){
+    // Untuk sisi kiri, angka yang menyambung ditempatkan di bagian kanan keping baru.
+    if(c.b===left){board.unshift({a:c.a,b:c.b});return {board,left:c.a,right}}
+    if(c.a===left){board.unshift({a:c.b,b:c.a});return {board,left:c.b,right}}
+    return null;
   }
   return null;
 }
@@ -444,10 +477,15 @@ async function play(){
   const myHand=current?.hand?.[me?.id]||[];
   const picked=myHand[selectedIndex];
   if(!picked)return toast('Gaple berubah. Pilih ulang.');
-  const validNow=!(current?.board||[]).length?(picked.a===0&&picked.b===0):canPlay(picked,current.left,current.right);
+  const boardEmpty=!(current?.board||[]).length;
+  const validNow=boardEmpty?(picked.a===0&&picked.b===0):canPlay(picked,current.left,current.right);
   if(!validNow)return toast('Gaple tidak nyambung');
+  const canLeft=!boardEmpty&&(picked.a===current.left||picked.b===current.left);
+  const canRight=!boardEmpty&&(picked.a===current.right||picked.b===current.right);
+  if(!boardEmpty&&canLeft&&canRight&&!selectedSide)return toast('Pilih Kiri atau Kanan dulu');
+  const playSide=boardEmpty?'right':(selectedSide||(canLeft?'left':'right'));
   setPending(true);
-  animatePlayFromHand(picked,(current?.board||[]).length);
+  animatePlayFromHand(picked,playSide==='left'?0:(current?.board||[]).length);
   try{
     await runTransaction(db,async tx=>{
       const s=await tx.get(ref);
@@ -470,7 +508,11 @@ async function play(){
         board=[c];left=0;right=0;opening=c;
       }else{
         if(!canPlay(c,left,right))throw new Error('Gaple tidak nyambung');
-        const placed=placeOnBoard(c,board,left,right);
+        const txCanLeft=c.a===left||c.b===left;
+        const txCanRight=c.a===right||c.b===right;
+        if(playSide==='left'&&!txCanLeft)throw new Error('Ujung kiri sudah berubah. Pilih ulang.');
+        if(playSide==='right'&&!txCanRight)throw new Error('Ujung kanan sudah berubah. Pilih ulang.');
+        const placed=placeOnBoard(c,board,left,right,playSide);
         if(!placed)throw new Error('Gaple tidak bisa ditempatkan');
         board=placed.board;left=placed.left;right=placed.right;
       }
@@ -487,7 +529,7 @@ async function play(){
       }
       tx.update(ref,patch);
     });
-    selected=null;
+    selected=null;selectedSide=null;
   }catch(e){toast(humanError(e));console.error(e)}
   finally{setPending(false)}
 }
@@ -542,6 +584,7 @@ async function restartRound(){
       tx.update(ref,buildRound(players,r.scores||{}));
     });
     selected=null;
+    selectedSide=null;
     winnerShown=null;
     pendingAction=false;
     boardAnimIndex=null;
@@ -577,7 +620,7 @@ async function leaveRoom(){
     }catch(e){console.error('Leave update:',e)}
   }
   if(unsubRoom)unsubRoom();if(unsubChat)unsubChat();
-  unsubRoom=null;unsubChat=null;roomId=null;localState=null;selected=null;winnerShown=null;pendingAction=false;boardAnimIndex=null;boardAnimDir=null;if(boardAnimTimer){clearTimeout(boardAnimTimer);boardAnimTimer=null;}
+  unsubRoom=null;unsubChat=null;roomId=null;localState=null;selected=null;selectedSide=null;winnerShown=null;pendingAction=false;boardAnimIndex=null;boardAnimDir=null;if(boardAnimTimer){clearTimeout(boardAnimTimer);boardAnimTimer=null;}
   updateConnectionState(navigator.onLine?'ok':'off',navigator.onLine?'Realtime siap':'Internet terputus');
   $('game').classList.add('hidden');$('lobby').classList.remove('hidden');$('roomPill').classList.add('hidden');$('modal').classList.add('hidden');
 }
@@ -588,6 +631,8 @@ window.addEventListener('offline',()=>updateConnectionState('off','Internet terp
 renderSoundButton();
 updateConnectionState(navigator.onLine?'ok':'off',navigator.onLine?'Realtime siap':'Internet terputus');
 $('soundToggle').onclick=async()=>{await unlockAudio();toggleSound()};
+$('chooseLeft').onclick=()=>window.chooseSide('left');
+$('chooseRight').onclick=()=>window.chooseSide('right');
 $('create').onclick=async()=>{await unlockAudio();create()};
 $('join').onclick=async()=>{await unlockAudio();join()};
 $('play').onclick=async()=>{await unlockAudio();play()};
