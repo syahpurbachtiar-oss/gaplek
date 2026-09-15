@@ -87,7 +87,7 @@ const app=initializeApp(CONFIG), db=getFirestore(app);
 const $=id=>document.getElementById(id);
 const AV=['😎','🦁','🐯','🐼','🐸','🐵','🦊','🐨','🐲','👽','🤠','🥷'];
 let avatar=AV[0], roomId=null, me=null, unsubRoom=null, unsubChat=null, selected=null, selectedSide=null, localState=null;
-let starting=false, winnerShown=null, boardAnimIndex=null, boardAnimDir=null, boardAnimTimer=null, audioCtx=null;
+let starting=false, winnerShown=null, boardAnimIndex=null, boardAnimDir=null, boardAnimTimer=null, audioCtx=null, roundRestarting=false;
 let pendingAction=false, soundOn=localStorage.getItem('hayGapleSound')!=='off';
 
 AV.forEach((a,i)=>{
@@ -420,7 +420,18 @@ function render(){
     $('modal').classList.remove('hidden');
     confetti();
   }
-  if(!r.winner)winnerShown=null;
+  if(r.winner){
+    const p=r.players?.[r.winner];
+    const isWinner=p?.id===me?.id;
+    $('closeModal').disabled=!isWinner||roundRestarting;
+    $('closeModal').textContent=roundRestarting&&isWinner?'Mengocok...':(isWinner?'Main Lagi':'Menunggu '+(p?.name||'pemenang')+' memulai ronde berikutnya…');
+  }else{
+    winnerShown=null;
+    roundRestarting=false;
+    $('modal').classList.add('hidden');
+    $('closeModal').disabled=false;
+    $('closeModal').textContent='Main Lagi';
+  }
 }
 
 function pipFace(n){
@@ -638,8 +649,13 @@ async function pass(){
 }
 
 async function restartRound(){
-  if(!roomId)return;
+  if(!roomId||roundRestarting)return;
+  if(!localState?.winner)return;
+  if(localState.winner!==me?.id)return toast('Hanya pemenang ronde yang dapat memulai ronde berikutnya');
   const ref=doc(db,'rooms',roomId);
+  roundRestarting=true;
+  $('closeModal').disabled=true;
+  $('closeModal').textContent='Mengocok...';
   try{
     await runTransaction(db,async tx=>{
       const s=await tx.get(ref);
@@ -647,7 +663,9 @@ async function restartRound(){
       const r=s.data();
       const players=r.players||{};
       if(Object.keys(players).length!==4)throw new Error('Main lagi membutuhkan 4 pemain');
-      tx.update(ref,buildRound(players,r.scores||{},r.winner||null));
+      if(!r.winner)throw new Error('Ronde berikutnya sudah dimulai');
+      if(r.winner!==me.id)throw new Error('Hanya pemenang ronde yang dapat memulai ronde berikutnya');
+      tx.update(ref,buildRound(players,r.scores||{},r.winner));
     });
     selected=null;
     selectedSide=null;
@@ -656,8 +674,12 @@ async function restartRound(){
     boardAnimIndex=null;
     boardAnimDir=null;
     if(boardAnimTimer){clearTimeout(boardAnimTimer);boardAnimTimer=null;}
-    $('modal').classList.add('hidden');
-  }catch(e){toast(humanError(e));console.error(e)}
+  }catch(e){
+    roundRestarting=false;
+    toast(humanError(e));
+    console.error(e);
+    render();
+  }
 }
 
 async function send(text){
