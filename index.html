@@ -17,7 +17,7 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
 </head>
 <body>
 <div class="app">
-<header class="top"><div class="brand">🀄 <span>HAY</span> Gaple <small style="font-size:11px;color:#f5c451;border:1px solid #f5c45155;border-radius:999px;padding:3px 7px;vertical-align:middle">v3.1 BLOCKED TIEBREAK</small></div><div id="roomPill" class="pill hidden"></div></header>
+<header class="top"><div class="brand">🀄 <span>HAY</span> Gaple <small style="font-size:11px;color:#f5c451;border:1px solid #f5c45155;border-radius:999px;padding:3px 7px;vertical-align:middle">v3.2 Z + WINNER START</small></div><div id="roomPill" class="pill hidden"></div></header>
 
 <section id="lobby" class="card lobby">
   <div class="hero"><div class="crown">🀄</div><h1>HAY Gaple</h1><p>Gaple online 4 pemain. Satu room, empat HP, satu pemenang.</p></div>
@@ -55,7 +55,7 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
    </div>
    <div class="sidebox"><h3>🎛 Status Game</h3><div class="meta-row"><div id="connPill" class="mini-pill wait"><span class="signal"></span><b>Menyambungkan...</b></div><button id="soundToggle" class="icon-btn">🔊 Suara ON</button></div><div id="hintBox" class="small" style="margin-top:10px">Tip: kartu yang bisa dimainkan akan menyala hijau saat giliran kamu.</div></div>
    <div class="sidebox"><h3>🏆 Leaderboard</h3><div id="leaderboard"></div></div>
-   <div class="sidebox"><h3>📌 Aturan</h3><div class="small">• 28 keping gaple<br>• Balak 0-0 wajib membuka permainan<br>• Setelah itu keping gaple harus nyambung<br>• Tidak bisa main = Pass<br>• 4 pemain = kartu langsung dibagikan otomatis</div></div>
+   <div class="sidebox"><h3>📌 Aturan</h3><div class="small">• 28 keping gaple<br>• Ronde pertama dibuka balak 0-0<br>• Ronde berikutnya dibuka pemenang ronde sebelumnya<br>• Setelah itu keping gaple harus nyambung<br>• Tidak bisa main = Pass<br>• 4 pemain = kartu langsung dibagikan otomatis</div></div>
    <button id="leave" class="btn secondary">Keluar Room</button>
  </aside>
 </section>
@@ -66,7 +66,7 @@ button,input{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:aut
 <div id="confetti" class="confetti"></div>
 
 <script type="module">
-console.info("HAY Gaple v3.1 BLOCKED TIEBREAK loaded");
+console.info("HAY Gaple v3.2 Z + WINNER START loaded");
 const CONFIG = {
   apiKey: "AIzaSyAkOtTs5esLNHwRzFGDaoE1uG5fx6R266s",
   authDomain: "gaple-5f664.firebaseapp.com",
@@ -125,21 +125,23 @@ function compareFaceVectors(a,b){
 function sameFaceVectors(a,b){return a.length===b.length&&a.every((v,i)=>v===b[i])}
 function canPlay(c,left,right){return c.a===left||c.b===left||c.a===right||c.b===right}
 function playersOf(r){return Object.values(r.players||{}).sort((a,b)=>String(a.id).localeCompare(String(b.id)))}
-function makeRoom(){return {players:{},hand:{},board:[],left:null,right:null,turn:0,started:false,opening:null,passes:0,winner:null,winnerReason:null,winnerPips:null,winnerTiles:null,winnerLowFace:null,winnerTiebreak:null,scores:{},history:[],createdAt:Date.now()}}
+function makeRoom(){return {players:{},hand:{},board:[],left:null,right:null,turn:0,started:false,opening:null,roundStarter:null,passes:0,winner:null,winnerReason:null,winnerPips:null,winnerTiles:null,winnerLowFace:null,winnerTiebreak:null,scores:{},history:[],createdAt:Date.now()}}
 function humanError(e){
   const m=String(e?.message||e||'Terjadi kesalahan');
   if(m.includes('permission-denied')) return 'Firestore menolak akses. Cek Firestore Rules.';
   return m.replace(/^FirebaseError:\s*/,'');
 }
-function buildRound(players,oldScores={}){
+function buildRound(players,oldScores={},previousWinnerId=null){
   const ps=Object.values(players).sort((a,b)=>String(a.id).localeCompare(String(b.id)));
   if(ps.length!==4) throw new Error('Permainan membutuhkan tepat 4 pemain');
   const d=shuffle(deck()), hands={};
   ps.forEach((p,i)=>hands[p.id]=d.slice(i*7,i*7+7));
-  const starter=ps.findIndex(p=>hands[p.id].some(c=>c.a===0&&c.b===0));
+  const winnerStarter=previousWinnerId?ps.findIndex(p=>p.id===previousWinnerId):-1;
+  const doubleZeroStarter=ps.findIndex(p=>hands[p.id].some(c=>c.a===0&&c.b===0));
+  const starter=winnerStarter>=0?winnerStarter:(doubleZeroStarter<0?0:doubleZeroStarter);
   return {
     hand:hands,board:[],left:null,right:null,
-    turn:starter<0?0:starter,started:true,opening:null,passes:0,winner:null,winnerReason:null,winnerPips:null,winnerTiles:null,winnerLowFace:null,winnerTiebreak:null,
+    turn:starter,started:true,opening:null,roundStarter:winnerStarter>=0?previousWinnerId:null,passes:0,winner:null,winnerReason:null,winnerPips:null,winnerTiles:null,winnerLowFace:null,winnerTiebreak:null,
     scores:{...oldScores}
   };
 }
@@ -255,7 +257,7 @@ async function joinAfter(){
 
 function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 function currentTurnPlayer(r){const ps=playersOf(r);return ps[r.turn]||null}
-function directionForIndex(i){return i<7?'right':i<14?'down':i<21?'left':'up'}
+function directionForIndex(i){return i<7?'right':i<10?'down':i<17?'left':i<20?'down':i<27?'right':'down'}
 function ensureAudio(){
   const Ctx=window.AudioContext||window.webkitAudioContext;
   if(!Ctx)return null;
@@ -306,12 +308,21 @@ function triggerBoardAnim(index,dir=directionForIndex(index)){
 }
 
 function moveTargetMetrics(i){
-  const SIZE=560, STEP=70, H_W=64, H_H=34, V_W=34, V_H=64;
+  const SIZE=600, STEPX=70, H_W=64, H_H=34, V_W=34, V_H=64;
   let x=0,y=0,w=H_W,h=H_H,dir='right';
-  if(i<7){x=i*STEP;y=0;dir='right'}
-  else if(i<14){x=7*STEP;y=(i-7)*STEP;w=V_W;h=V_H;dir='down'}
-  else if(i<21){x=(21-i)*STEP;y=7*STEP;dir='left'}
-  else{x=0;y=(28-i)*STEP;w=V_W;h=V_H;dir='up'}
+  if(i<7){
+    x=i*STEPX; y=0; dir='right';
+  }else if(i<10){
+    x=7*STEPX; y=38+(i-7)*68; w=V_W; h=V_H; dir='down';
+  }else if(i<17){
+    x=(16-i)*STEPX; y=242; dir='left';
+  }else if(i<20){
+    x=0; y=280+(i-17)*68; w=V_W; h=V_H; dir='down';
+  }else if(i<27){
+    x=(i-20)*STEPX; y=484; dir='right';
+  }else{
+    x=7*STEPX; y=522; w=V_W; h=V_H; dir='down';
+  }
   return {x,y,w,h,dir,SIZE};
 }
 function animatePlayFromHand(card,index){
@@ -344,14 +355,14 @@ function render(){
   }else if(!r.started){
     $('board').innerHTML='<div style="text-align:center;color:#a8b8ad">Membagikan 28 keping gaple…</div>';
   }else{
-    $('board').innerHTML='<div style="text-align:center;color:#a8b8ad">Menunggu 0-0 sebagai pembukaan…</div>';
+    $('board').innerHTML=r.roundStarter?'<div style="text-align:center;color:#a8b8ad">Pemenang ronde sebelumnya membuka permainan…</div>':'<div style="text-align:center;color:#a8b8ad">Menunggu 0-0 sebagai pembukaan…</div>';
   }
 
   const hand=r.hand?.[me?.id]||[];
   const canAct=!!(r.started&&!r.winner&&turnPlayer?.id===me?.id&&!pendingAction);
   const boardEmpty=!(r.board||[]).length;
   $('hand').innerHTML=hand.map((c,i)=>{
-    const playable=canAct&&(boardEmpty?(c.a===0&&c.b===0):canPlay(c,r.left,r.right));
+    const playable=canAct&&(boardEmpty?(r.roundStarter?true:(c.a===0&&c.b===0)):canPlay(c,r.left,r.right));
     const dim=canAct&&!playable;
     return domino(c,'domino '+(selected===i?'selected ':'')+(playable?'playable ':'')+(dim?'unplayable ':''),`onclick="selectCard(${i})"`);
   }).join('');
@@ -387,7 +398,7 @@ function render(){
 
   $('play').disabled=!canAct||selected===null||(needsSideChoice&&selectedSide===null);
   $('pass').disabled=!canAct;
-  const hinted=canAct?hand.some(c=>boardEmpty?(c.a===0&&c.b===0):canPlay(c,r.left,r.right)):false;
+  const hinted=canAct?hand.some(c=>boardEmpty?(r.roundStarter?true:(c.a===0&&c.b===0)):canPlay(c,r.left,r.right)):false;
   if($('hintBox'))$('hintBox').textContent=pendingAction?'Mengirim langkah ke room…':needsSideChoice&&selectedSide===null?'Gaple ini cocok di dua ujung. Pilih Kiri atau Kanan.':canAct?(hinted?'Tip: kartu yang bisa dimainkan menyala hijau. Ujung biru & emas menunjukkan sambungan aktif.':'Tidak ada kartu yang cocok. Kamu boleh tekan Pass.'):'Tip: tunggu giliran kamu untuk membuang gaple.';
 
   const lb=Object.entries(r.scores||{}).sort((a,b)=>b[1]-a[1]);
@@ -431,7 +442,7 @@ function renderBoard(cards,animIndex=null,leftVal=null,rightVal=null,side=null){
   const items=cards.slice(0,28).map((c,i)=>{
     const m=moveTargetMetrics(i);
     let cls=(m.w>m.h?'horiz':'vert');
-    if(i===6)cls+=' corner-tr'; else if(i===13)cls+=' corner-br'; else if(i===20)cls+=' corner-bl'; else if(i===27)cls+=' corner-tl';
+    if(i===6)cls+=' corner-tr'; else if(i===9)cls+=' corner-br'; else if(i===16)cls+=' corner-bl'; else if(i===19)cls+=' corner-tl'; else if(i===26)cls+=' corner-tr';
     if(i===0)cls+=' end-left'+(side==='left'?' pick-left':'');
     if(i===cards.length-1)cls+=' end-right'+(side==='right'?' pick-right':'');
     if(i===animIndex)cls+=' fresh-'+(boardAnimDir||directionForIndex(i));
@@ -448,7 +459,7 @@ window.selectCard=i=>{
   if(t?.id!==me?.id)return toast('Belum giliran kamu');
   const hand=localState.hand?.[me?.id]||[]; const c=hand[i]; if(!c)return;
   const boardEmpty=!(localState.board||[]).length;
-  const playable=boardEmpty?(c.a===0&&c.b===0):canPlay(c,localState.left,localState.right);
+  const playable=boardEmpty?(localState.roundStarter?true:(c.a===0&&c.b===0)):canPlay(c,localState.left,localState.right);
   if(!playable)return toast('Pilih gaple yang nyambung');
   selected=i;
   if(boardEmpty)selectedSide='right';
@@ -493,7 +504,7 @@ async function play(){
   const picked=myHand[selectedIndex];
   if(!picked)return toast('Gaple berubah. Pilih ulang.');
   const boardEmpty=!(current?.board||[]).length;
-  const validNow=boardEmpty?(picked.a===0&&picked.b===0):canPlay(picked,current.left,current.right);
+  const validNow=boardEmpty?(current.roundStarter?true:(picked.a===0&&picked.b===0)):canPlay(picked,current.left,current.right);
   if(!validNow)return toast('Gaple tidak nyambung');
   const canLeft=!boardEmpty&&(picked.a===current.left||picked.b===current.left);
   const canRight=!boardEmpty&&(picked.a===current.right||picked.b===current.right);
@@ -519,7 +530,7 @@ async function play(){
       let left=r.left, right=r.right, opening=r.opening||null;
 
       if(!board.length){
-        if(c.a!==0||c.b!==0)throw new Error('Pembukaan wajib 0-0');
+        if(!r.roundStarter&&(c.a!==0||c.b!==0))throw new Error('Pembukaan ronde pertama wajib 0-0');
         board=[c];left=0;right=0;opening=c;
       }else{
         if(!canPlay(c,left,right))throw new Error('Gaple tidak nyambung');
@@ -585,7 +596,8 @@ async function pass(){
         const stats=ps.map((p,seat)=>{
           const h=r.hand?.[p.id]||[];
           const faces=handFaces(h);
-          return {id:p.id,seat,total:h.reduce((sum,c)=>sum+points(c),0),count:h.length,faces,low:faces[0]??99};
+          const total=(h.length===1&&h[0]?.a===0&&h[0]?.b===0)?25:h.reduce((sum,c)=>sum+points(c),0);
+          return {id:p.id,seat,total,count:h.length,faces,low:faces[0]??99};
         });
 
         const minPips=Math.min(...stats.map(x=>x.total));
@@ -634,7 +646,7 @@ async function restartRound(){
       const r=s.data();
       const players=r.players||{};
       if(Object.keys(players).length!==4)throw new Error('Main lagi membutuhkan 4 pemain');
-      tx.update(ref,buildRound(players,r.scores||{}));
+      tx.update(ref,buildRound(players,r.scores||{},r.winner||null));
     });
     selected=null;
     selectedSide=null;
@@ -668,7 +680,7 @@ async function leaveRoom(){
         const hand={...(r.hand||{})};
         delete players[me.id];
         delete hand[me.id];
-        tx.update(ref,{players,hand,board:[],left:null,right:null,turn:0,started:false,opening:null,passes:0,winner:null,winnerReason:null,winnerPips:null,winnerTiles:null,winnerLowFace:null,winnerTiebreak:null});
+        tx.update(ref,{players,hand,board:[],left:null,right:null,turn:0,started:false,opening:null,roundStarter:null,passes:0,winner:null,winnerReason:null,winnerPips:null,winnerTiles:null,winnerLowFace:null,winnerTiebreak:null});
       });
     }catch(e){console.error('Leave update:',e)}
   }
