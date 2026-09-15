@@ -448,7 +448,8 @@ function renderBoard(cards,animIndex=null,leftVal=null,rightVal=null,side=null){
     if(i===animIndex)cls+=' fresh-'+(boardAnimDir||directionForIndex(i));
     const left=((m.x/m.SIZE)*100).toFixed(4), top=((m.y/m.SIZE)*100).toFixed(4), width=((m.w/m.SIZE)*100).toFixed(4), height=((m.h/m.SIZE)*100).toFixed(4);
     let attrs='style="left:'+left+'%;top:'+top+'%;width:'+width+'%;height:'+height+'%;"';
-    return domino(c,'domino board-piece '+cls,attrs);
+    const visualCard=m.dir==='left'?{a:c.b,b:c.a}:c;
+    return domino(visualCard,'domino board-piece '+cls,attrs);
   }).join('');
   return '<div class="domino-track square-loop">'+items+'</div>';
 }
