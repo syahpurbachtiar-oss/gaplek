@@ -543,7 +543,7 @@ async function play(){
 
       if(!board.length){
         if(!r.roundStarter&&(c.a!==0||c.b!==0))throw new Error('Pembukaan ronde pertama wajib 0-0');
-        board=[c];left=0;right=0;opening=c;
+        board=[c];left=c.a;right=c.b;opening=c;
       }else{
         if(!canPlay(c,left,right))throw new Error('Gaple tidak nyambung');
         const txCanLeft=c.a===left||c.b===left;
